@@ -243,7 +243,7 @@ namespace Riode_WebUI.Migrations
             modelBuilder.Entity("Riode_WebUI.Models.Entities.Product", b =>
                 {
                     b.HasOne("Riode_WebUI.Models.Entities.Brand", "Brand")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -268,6 +268,11 @@ namespace Riode_WebUI.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Riode_WebUI.Models.Entities.Brand", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Riode_WebUI.Models.Entities.Category", b =>

@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Details";
 }
+
+
 <div class="page-content mb-10 pb-6">
     <div class="container">
         <div class="product product-single row mb-8">
@@ -22,11 +24,11 @@
                         <div class="product-thumbs">
                             @foreach (var item in Model.Images)
                             {
-                                <div class="product-thumb active">
+                                <div class="product-thumb @(item.IsMain?"active":"")">
                                     <img src="~/uploads/images/product/@item.FileName" alt="product thumbnail" width="109" height="122">
                                 </div>
                             }
-                            
+
                         </div>
                         <button class="thumb-up disabled"><i class="fas fa-chevron-left"></i></button>
                         <button class="thumb-down disabled"><i class="fas fa-chevron-right"></i></button>
@@ -67,7 +69,7 @@
                     <h1 class="product-name">@Model.Name</h1>
                     <div class="product-meta">
                         SKU: <span class="product-sku">@Model.SkuCode</span>
-                        BRAND: <span class="product-brand">@Model.Brand.Name</span>
+                        BRAND: <span class="product-brand">@Model.Brand?.Name</span>
                     </div>
                     <div class="product-price">
                         <ins class="new-price">$184.00</ins><del class="old-price">$220.00</del>
@@ -560,4 +562,3 @@
         </section>
     </div>
 </div>
-

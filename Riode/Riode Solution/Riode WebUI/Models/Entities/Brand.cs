@@ -9,5 +9,6 @@ namespace Riode_WebUI.Models.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
