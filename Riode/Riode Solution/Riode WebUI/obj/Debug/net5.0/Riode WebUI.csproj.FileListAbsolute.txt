@@ -1,0 +1,316 @@
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\appsettings.Development.json
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\appsettings.json
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.exe
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.deps.json
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.runtimeconfig.json
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.runtimeconfig.dev.json
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ref\Riode WebUI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Humanizer.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\dotnet-aspnet-codegenerator-design.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.AttributedModel.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Convention.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Hosting.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Runtime.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.TypedParts.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.AssemblyInfoInputs.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.AssemblyInfo.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.CoreCompileInputs.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.MvcApplicationPartsAssemblyInfo.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\staticwebassets\Riode WebUI.StaticWebAssets.Manifest.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\staticwebassets\Riode WebUI.StaticWebAssets.xml
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\scopedcss\bundle\Riode WebUI.styles.css
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorTargetAssemblyInfo.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.CopyComplete
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\ref\Riode WebUI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.genruntimeconfig.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorAssemblyInfo.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorAssemblyInfo.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.TagHelpers.input.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.TagHelpers.output.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorCoreGenerate.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorTargetAssemblyInfo.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.Views.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.AssemblyReference.cache
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\FAQ.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Cart.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Element\ElementProducts.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Runtime.Caching.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Product\Details.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\Wishlist.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shared\Error404.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\Index.cshtml.g.cs
+E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Views\Static\coming-soon.html
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\appsettings.Development.json
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\appsettings.json
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Views\Static\coming-soon.html
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.exe
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.deps.json
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.runtimeconfig.json
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.runtimeconfig.dev.json
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ref\Riode WebUI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Humanizer.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\dotnet-aspnet-codegenerator-design.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.AttributedModel.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Convention.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Hosting.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Runtime.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.TypedParts.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Runtime.Caching.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.AssemblyReference.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.AssemblyInfoInputs.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.AssemblyInfo.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.CoreCompileInputs.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.MvcApplicationPartsAssemblyInfo.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorAssemblyInfo.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorAssemblyInfo.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\staticwebassets\Riode WebUI.StaticWebAssets.Manifest.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\staticwebassets\Riode WebUI.StaticWebAssets.xml
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\scopedcss\bundle\Riode WebUI.styles.css
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.TagHelpers.input.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.TagHelpers.output.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorCoreGenerate.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\Wishlist.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Element\ElementProducts.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\FAQ.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Cart.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shared\Error404.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorTargetAssemblyInfo.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorTargetAssemblyInfo.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.Views.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.CopyComplete
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\ref\Riode WebUI.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.genruntimeconfig.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\Details.cshtml.g.cs

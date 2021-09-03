@@ -42,5 +42,21 @@ namespace Riode_WebUI.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Details(long id)
+        {
+            var db = new RiodeDbContext();
+            var data = db.Products
+                 .Include(p => p.Images)
+                 .Include(p => p.Brand)
+                 .Include(p => p.Category)
+                 .FirstOrDefault(s => s.DeletedByUserId == null && s.Id == id);
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+            return View(data);
+        }
+
     }
 }
