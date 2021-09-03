@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Riode_WebUI.Models.DataContexts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,13 @@ namespace Riode_WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<RiodeDbContext>(cfg=> { }, ServiceLifetime.Scoped);
+
+            //butun urller kicik herfli olsun
+            services.AddRouting(cfg => cfg.LowercaseUrls = true);
+
+
         }
 
         

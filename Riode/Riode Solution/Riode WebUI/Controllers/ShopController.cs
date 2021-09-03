@@ -12,9 +12,13 @@ namespace Riode_WebUI.Controllers
 {
     public class ShopController : Controller
     {
+        readonly RiodeDbContext db;
+        public ShopController(RiodeDbContext db)
+        {
+            this.db = db;
+        }
         public IActionResult Index()
         {
-            var db = new RiodeDbContext();
             var viewModel = new CategoryViewModel(); 
             viewModel.Categories = db.Categories
                 .Include(c=>c.Parent)
@@ -44,7 +48,6 @@ namespace Riode_WebUI.Controllers
 
         public IActionResult Details(long id)
         {
-            var db = new RiodeDbContext();
             var data = db.Products
                  .Include(p => p.Images)
                  .Include(p => p.Brand)
