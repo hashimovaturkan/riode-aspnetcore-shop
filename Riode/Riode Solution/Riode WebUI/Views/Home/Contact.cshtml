@@ -1,4 +1,4 @@
-﻿
+﻿@model ContactPost
 @{
     ViewData["Title"] = "Contact";
 }
@@ -43,22 +43,26 @@
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-6 d-flex align-items-center mb-4">
                     <div class="w-100">
-                        <form class="pl-lg-2" action="#">
+                        <form class="pl-lg-2" id="contact" asp-controller="home" asp-action="contact" novalidate>
                             <h4 class="ls-m font-weight-bold">Let’s Connect</h4>
+
                             <p>
                                 Your email address will not be published. Required fields are
                                 marked *
                             </p>
                             <div class="row mb-2">
                                 <div class="col-12 mb-4">
-                                    <textarea class="form-control" required
+                                    <textarea asp-for="Comment" class="form-control"
                                               placeholder="Comment*"></textarea>
+                                    <span asp-validation-for="Comment"></span>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <input class="form-control" type="text" placeholder="Name *" required>
+                                    <input asp-for="Name" class="form-control" placeholder="Name *">
+                                    <span asp-validation-for="Name"></span>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <input class="form-control" type="email" placeholder="Email *" required>
+                                    <input asp-for="Email" class="form-control" placeholder="Email *">
+                                    <span asp-validation-for="Email"></span>
                                 </div>
                             </div>
                             <button class="btn btn-dark btn-rounded">
@@ -144,3 +148,76 @@
     <div class="grey-section google-map" id="googlemaps" style="height: 386px"></div>
     <!-- End Map Section -->
 </div>
+
+@section addjs{
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            $("#contact").submit(function (e) {
+                e.preventDefault();
+
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                const formData = new FormData();
+
+                $.ajax({
+                    url: '@Url.Action("Contact","Home")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        console.log("before sending")
+                    },
+                    success: function (data) {
+                        console.log(data);
+
+                        if (data.error == false) {
+                            toastr.success(data.message, 'Successfully!');
+                            e.currentTarget.reset();
+                        }
+                        else {
+                            toastr.error(data.message, 'Error!');
+                        }
+
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        toastr.success("Something is wrong. Please try again..", 'Error!');
+                    }
+                }).always(function () {
+                    console.log("after sending")
+
+
+                });
+            });
+
+        })
+    </script>
+}
+
+@section addcss{
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+}

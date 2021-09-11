@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
+using Riode_WebUI.Models.FormModels;
 using Riode_WebUI.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,42 @@ namespace Riode_WebUI.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        //json formatda
+        //public IActionResult Filter([FromBody]ShopFilterFormModel model)
+        public IActionResult Filter(ShopFilterFormModel model)
+        {
+            var query = db.Products
+                .Include(p => p.Images.Where(i => i.IsMain == true))
+                .Include(q => q.Brand)
+                .Include(s => s.ProductSizeColorCollections)
+                .Where(s => s.DeletedByUserId == null)
+                .AsQueryable();
+
+            if (model?.Brands?.Count()>0)
+            {
+                query = query.Where(p => model.Brands.Contains((int)p.BrandId));
+            }
+
+            if (model?.Sizes?.Count() > 0)
+            {
+                query = query.Where(p => p.ProductSizeColorCollections
+                        .Any(q => model.Sizes.Contains((int)q.SizeId)));
+            }
+
+            if (model?.Colors?.Count() > 0)
+            {
+                query = query.Where(p => p.ProductSizeColorCollections
+                        .Any(q => model.Colors.Contains((int)q.ColorId)));
+            }
+
+
+            return PartialView("_ProductContainer", query.ToList());
+            //return Json(new{
+            //    error=false,
+            //    data = query.ToList()
+            //});
+        }
         public IActionResult Details(long id)
         {
             var data = db.Products
