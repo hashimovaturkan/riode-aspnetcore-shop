@@ -144,7 +144,6 @@
         </div>
     </section>
     <!-- End Store Section -->
-    <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
     <div class="grey-section google-map" id="googlemaps" style="height: 386px"></div>
     <!-- End Map Section -->
 </div>
@@ -204,8 +203,7 @@
 
                     },
                     error: function (data) {
-                        console.log(data);
-                        toastr.success("Something is wrong. Please try again..", 'Error!');
+                        toastr.error("Something is wrong. Please try again..", 'Error!');
                     }
                 }).always(function () {
                     console.log("after sending")
@@ -216,8 +214,95 @@
 
         })
     </script>
+
+    @*Custom-validation*@
+    @*<script>
+            $(document).ready(function () {
+
+                $('[data-val]="true"').each(function(index,item){
+                    $(item).removeAttr('data-val');
+                    let  value = $(item).data('val-required');
+                    if(value !=undefined && value.length>0){
+                        $(item).removeAttr('data-val-required');
+
+                        $(item).attr('data-rule-required',true);
+                        $(item).attr('data-msg-required',value);
+                    }
+
+                    value = $(item).data('val-email');
+                    if(value !=undefined && value.length>0){
+                        $(item).removeAttr('data-val-email');
+
+                        $(item).attr('data-rule-email',true);
+                        $(item).attr('data-msg-email',value);
+                    }
+
+                });
+
+
+
+
+                $("#contact")
+                    .submit(function (e) {
+                        e.preventDefault();
+                        const isValid = $(e.currentTarget).valid();
+                        if (isValid != true)
+                            return;
+
+                        const formData = new FormData(e.currentTarget);
+
+                        $.ajax({
+                            url: "",
+                            type: "POST",
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (response) {
+                                if (response.message == false) {
+                                    e.currentTarget.reset();
+                                    alert(response.message);
+
+                                    $(e.currentTarget).find(".is-valid").removeClass("is-valid");
+                                }
+                                else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function () {
+
+                            }
+
+                        })
+                    })
+                    .validate({
+                    errorElement: 'span',
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).addClass("is-invalid").removeClass("is-valid");
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).addClass("is-valid").removeClass("is-invalid");
+                    }
+                });
+            })
+        </script>*@
 }
 
 @section addcss{
     <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+
+
+    @*Custom-validation style*@
+    @*<style>
+            .is-valid{
+                border:1px solid teal;
+            }
+            .is-invalid {
+                border: 1px solid #dc3545;
+            }
+            .is-invalid + span.error{
+                color: #dc3545;
+                font-size:1rem;
+                margin-left:4px;
+            }
+        </style>*@
 }

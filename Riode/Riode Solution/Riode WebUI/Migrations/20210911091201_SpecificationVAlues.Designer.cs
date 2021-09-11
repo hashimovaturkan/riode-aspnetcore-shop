@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Riode_WebUI.Models.DataContexts;
 
 namespace Riode_WebUI.Migrations
 {
     [DbContext(typeof(RiodeDbContext))]
-    partial class RiodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210911091201_SpecificationVAlues")]
+    partial class SpecificationVAlues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -496,10 +498,16 @@ namespace Riode_WebUI.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("ProductId")
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("ProductId1")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("SpecificationId")
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("SpecificationId1")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Value")
@@ -507,9 +515,9 @@ namespace Riode_WebUI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId1");
 
-                    b.HasIndex("SpecificationId");
+                    b.HasIndex("SpecificationId1");
 
                     b.ToTable("SpecificationValues");
                 });
@@ -614,15 +622,11 @@ namespace Riode_WebUI.Migrations
                 {
                     b.HasOne("Riode_WebUI.Models.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId1");
 
                     b.HasOne("Riode_WebUI.Models.Entities.Specification", "Specification")
                         .WithMany()
-                        .HasForeignKey("SpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SpecificationId1");
 
                     b.Navigation("Product");
 

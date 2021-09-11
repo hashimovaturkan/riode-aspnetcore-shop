@@ -89,6 +89,8 @@ namespace Riode_WebUI.Controllers
                  .Include(p => p.Images)
                  .Include(p => p.Brand)
                  .Include(p => p.Category)
+                 .Include(p => p.SpecificationValues.Where(s=>s.DeletedByUserId==null))
+                 .ThenInclude(s=>s.Specification)
                  .FirstOrDefault(s => s.DeletedByUserId == null && s.Id == id);
 
             if (data == null)
