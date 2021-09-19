@@ -1,0 +1,71 @@
+﻿@model ContactPost
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1 class="mb-3">Details</h1>
+        <dl class="row mx-0">
+            <dt class="col-sm-2">
+                Name
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Name
+            </dd>
+            <dt class="col-sm-2">
+                Email
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Email
+            </dd>
+            <dt class="col-sm-2">
+                Comment
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Comment
+            </dd>
+            <dt class="col-sm-2">
+                Answer
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Answer
+            </dd>
+            <dt class="col-sm-2">
+                Answer Date
+            </dt>
+            <dd class="col-sm-10">
+                @Model.AnswerDate?.ToString("MMM d, YYYY")
+            </dd>
+            <dd class="col-12 form-answer" style="display:none">
+                <form method="POST" asp-controller="contactposts" asp-action="answer" >
+                    <textarea name="Answer" class="form-control mt-3" placeholder="Message"></textarea>
+                    <input type="hidden" asp-for="@Model.Id"/>
+                    <button class="btn btn-primary mt-3">Answer</button>
+                </form>
+            </dd>
+        </dl>
+    </div>
+    <div class="mx-3">
+        <a class="btn btn-primary" id="reply">Reply</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+            
+@section addjs{ 
+    <script>
+        
+        $(document).ready(function () {
+
+            $('#reply').click(function (e) {
+                e.preventDefault();
+
+                $('.form-answer').show();
+            })
+        })
+    </script>
+}

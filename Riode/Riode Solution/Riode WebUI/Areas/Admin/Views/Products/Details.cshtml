@@ -1,0 +1,100 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1>Details</h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <th scope="row">Sku Code</th>
+                    <td>@Model.SkuCode</td>
+                </tr>
+                <tr>
+                    <th scope="row">Brand</th>
+                    <td>@Model.BrandId</td>
+                </tr>
+                <tr>
+                    <th scope="row">Category</th>
+                    <td>@Model.CategoryId</td>
+                </tr>
+                <tr>
+                    <th scope="row">Short Description</th>
+                    <td>@Model.ShortDescription</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>@Model.Description</td>
+                </tr>>
+                @foreach (var item in Model.ProductSizeColorCollections)
+                {
+                    <tr>
+                        <th scope="row">Color</th>
+                        <td>@item.ColorId</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Size</th>
+                        <td>@item.SizeId</td>
+                    </tr>
+                }
+                <tr>
+                    <th scope="row">User Id (Create)</th>
+                    <td>@Model.CreatedByUserId</td>
+                </tr>
+                <tr>
+                    <th scope="row">Created Date</th>
+                    <td>@Model.CreatedDate</td>
+                </tr>
+                <tr>
+                    <th scope="row">User Id (Delete)</th>
+                    <td>@Model.CreatedDate</td>
+                </tr>
+                <tr>
+                    <th scope="row">Deleted Date</th>
+                    <td>@Model.DeletedDate</td>
+                </tr>
+                <tr>
+                    <th scope="row">Images</th>
+                    <td class="image-box">
+                        @foreach (var item in Model.Images)
+                        {
+                            <img src="~/uploads/images/product/@item.FileName" width="70" height="70" class="mr-5" />
+
+                            @if (item.IsMain == true)
+                            {
+                                <span class="image-desc">It is main image</span>
+                            }
+
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+</div>
+
+
+@section addcss{
+    <style>
+        .image-box{
+            position:relative;
+        }
+        .image-desc {
+            position:absolute;
+            bottom:-10px;
+            left:0;
+        }
+    </style>
+}

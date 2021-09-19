@@ -1,0 +1,54 @@
+﻿@model BlogPost
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1>Details</h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Title</th>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <th scope="row">Content</th>
+                    <td>@Model.Content.PlainText()</td>
+                </tr>
+                <tr>
+                    <th scope="row">Published Date</th>
+                    <td>@Model.PublishedDate</td>
+                </tr>
+                <tr>
+                    <th scope="row">Category</th>
+                    <td>@Model.CategoryId</td>
+                </tr>
+                <tr>
+                    <th scope="row">User Id (Create)</th>
+                    <td>@Model.CreatedByUserId</td>
+                </tr>
+                <tr>
+                    <th scope="row">Created Date</th>
+                    <td>@Model.CreatedDate</td>
+                </tr>
+                <tr>
+                    <th scope="row">User Id (Delete)</th>
+                    <td>@Model.CreatedDate</td>
+                </tr>
+                <tr>
+                    <th scope="row">Deleted Date</th>
+                    <td>@Model.DeletedDate</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+

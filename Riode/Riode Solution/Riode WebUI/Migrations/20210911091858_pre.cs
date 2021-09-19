@@ -63,7 +63,7 @@ namespace Riode_WebUI.Migrations
                         column: x => x.SpecificationId,
                         principalTable: "Specifications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +96,7 @@ namespace Riode_WebUI.Migrations
                         column: x => x.SpecificationId1,
                         principalTable: "Specifications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

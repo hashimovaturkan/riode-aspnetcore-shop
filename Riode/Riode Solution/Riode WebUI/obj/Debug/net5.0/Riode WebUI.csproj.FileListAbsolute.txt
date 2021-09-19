@@ -158,6 +158,7 @@ E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\obj\Debug\net
 E:\Lesson folder\Asp.Net Core MVC\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Views\Static\coming-soon.html
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\appsettings.Development.json
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\appsettings.json
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\libman.json
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Views\Static\coming-soon.html
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.exe
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.deps.json
@@ -169,6 +170,8 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.pdb
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Humanizer.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
@@ -198,6 +201,7 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.AttributedModel.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Convention.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\System.Composition.Hosting.dll
@@ -287,19 +291,54 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.TagHelpers.input.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.TagHelpers.output.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorCoreGenerate.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\ForgotPass.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\Login.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Brands\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Colors\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Colors\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Colors\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Colors\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Colors\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\ContactPosts\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\ContactPosts\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Chat.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Invoice.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Mail.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sizes\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\Wishlist.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Element\ElementProducts.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\FAQ.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Home\SubscribeConfirm.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Cart.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shared\Error404.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\Details.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\_ProductContainer.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorTargetAssemblyInfo.cache
@@ -310,21 +349,14 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\ref\Riode WebUI.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.pdb
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.genruntimeconfig.cache
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\Details.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.AssemblyReference.cache
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\libman.json
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Index.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Mail.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Chat.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Dashboard\Invoice.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\Login.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\ForgotPass.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Shop\_ProductContainer.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogPosts\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogPosts\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogPosts\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogPosts\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\BlogPosts\Index.cshtml.g.cs

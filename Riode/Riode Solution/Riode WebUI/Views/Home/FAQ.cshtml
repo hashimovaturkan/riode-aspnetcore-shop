@@ -25,11 +25,11 @@
                         {
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="#collapse2-2" class="expand">
+                                    <a href="#collapse@(item.Id)" class="expand">
                                         @item.Question
                                     </a>
                                 </div>
-                                <div id="collapse2-2" class="collapsed">
+                                <div id="collapse@(item.Id)" class="collapsed">
                                     <div class="card-body">
                                         <p>
                                             @item.Answer
@@ -44,6 +44,17 @@
         </div>
     </section>
 </div>
+
+@section addjs{ 
+    <script>
+        $(document).ready(() => {
+            $(".expand").first().removeClass("expand").addClass("collapse");
+            $("div.collapsed").first().removeClass("collapsed").addClass("expanded");
+
+        })
+
+    </script>
+}
 
 
 

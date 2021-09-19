@@ -1,4 +1,4 @@
-﻿@model BlogPost
+﻿@model CategoryBlogPostViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -19,69 +19,22 @@
                 <article class="post-single">
                     <figure class="post-media">
                         <a href="#">
-                            <img src="~/uploads/images/blog/single/@Model.Images.FirstOrDefault(i=>i.IsMain)?.FileName" width="880" height="450" alt="post" />
+                            <img src="~/uploads/images/blog/single/@Model.BlogPost.Images.FirstOrDefault(i=>i.IsMain)?.FileName" width="880" height="450" alt="post" />
                         </a>
                     </figure>
                     <div class="post-details">
                         <div class="post-meta">
-                            by <a href="#" class="post-author">@Model.WritedBy</a>
-                            on <a href="#" class="post-date">@Model.CreatedDate.ToString("MMM d, yyyy")</a>
+                            by <a href="#" class="post-author">Anna</a>
+                            on <a href="#" class="post-date">@Model.BlogPost.PublishedDate.ToString("MMM d, yyyy")</a>
                             | <a href="#" class="post-comment"><span>2</span> Comments</a>
                         </div>
                         <h4 class="post-title">
                             <a href="#">
-                                @Model.Title
+                                @Model.BlogPost.Title
                             </a>
                         </h4>
                         <div class="post-body mb-7">
-                            @Html.Raw(@Model.Content)
-                            <div class="with-img row align-items-center">
-                                <div class="col-md-6 mb-6">
-                                    <figure>
-                                        <img src="~/uploads/images/blog/single/@Model.Images.FirstOrDefault(i=>!(i.IsMain))?.FileName" alt="image" width="336"
-                                             height="415" class="float-left">
-                                        <figcaption class="text-left mt-1">
-                                            Designe by <a href="#">Casper Dalin</a>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 mb-6">
-                                    <h4 class="font-weight-semi-bold ls-s">
-                                        Quisque volutpat mattiseros.
-                                    </h4>
-                                    <p class="mb-8 col-lg-11">
-                                        Sed pretium, ligula sollicitudin laoreet
-                                        viverra, tortor libero sodales leo,
-                                        eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo.
-                                        Suspendisse potenti.
-                                    </p>
-                                    <h4 class="font-weight-semi-bold ls-s">More Details</h4>
-                                    <ul class="list list-type-check mb-6">
-                                        <li>Praesent id enim sit amet.</li>
-                                        <li>Tdio vulputate eleifend in in tortor. ellus massa.</li>
-                                        <li>Massa ristique sit amet condim vel</li>
-                                        <li>Dilisis Facilisis quis sapien. Praesent id enim sit amet</li>
-                                        <li>Praesent id enim sit amet.</li>
-                                        <li>Tdio vulputate eleifend in in tortor. ellus massa.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <blockquote class="mt-1 mb-6 p-relative">
-                                <p class="font-weight-semi-bold ls-m">
-                                    @Model.Quote
-                                </p>
-                            </blockquote>
-
-                            <p>
-                                Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed
-                                lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.
-                                Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu
-                                pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum
-                                et, dapibus sed, urna. Morbi interdum mollis sapien. Sed ac risus. Phasellus
-                                lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae
-                                facilisis libero dolor a purus.
-                            </p>
+                            @Html.Raw(@Model.BlogPost.Content)
                         </div>
 
                         <div class="post-author-detail">
@@ -404,7 +357,7 @@
                         </div>
                         <div class="widget widget-collapsible border-no">
                             <h3 class="widget-title">Blog Categories</h3>
-                            <ul class="widget-body filter-items search-ul">
+                            @*<ul class="widget-body filter-items search-ul">
                                 <li><a href="#">Accessories</a></li>
                                 <li>
                                     <a href="#">Clothing</a>
@@ -423,7 +376,8 @@
                                 <li><a href="#">Fashion</a></li>
                                 <li><a href="#">Lifestyle</a></li>
                                 <li><a href="#">Backpack & Fashion bags</a></li>
-                            </ul>
+                            </ul>*@
+                            @Html.Raw(Model.Categories.GetCategoriesRow())
                         </div>
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">Popular Posts</h3>

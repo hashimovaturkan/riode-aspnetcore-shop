@@ -37,7 +37,7 @@ namespace Riode_WebUI.Migrations
                         column: x => x.SpecificationId1,
                         principalTable: "Specifications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

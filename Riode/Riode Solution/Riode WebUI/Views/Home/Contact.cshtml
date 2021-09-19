@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-6 d-flex align-items-center mb-4">
                     <div class="w-100">
-                        <form class="pl-lg-2" id="contact" asp-controller="home" asp-action="contact" novalidate>
+                        <form method="post" class="pl-lg-2" id="contact" asp-controller="home" asp-action="contact" novalidate>
                             <h4 class="ls-m font-weight-bold">Let’s Connect</h4>
 
                             <p>
@@ -149,27 +149,9 @@
 </div>
 
 @section addjs{
-    <script src="~/libs/toastr.js/toastr.min.js"></script>
-    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
-    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    
     <script>
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-bottom-right",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
+        
 
         $(document).ready(function () {
             $("#contact").submit(function (e) {
@@ -178,7 +160,7 @@
                 if (!$(e.currentTarget).valid())
                     return;
 
-                const formData = new FormData();
+                const formData = new FormData(e.currentTarget);
 
                 $.ajax({
                     url: '@Url.Action("Contact","Home")',
@@ -288,7 +270,7 @@
 }
 
 @section addcss{
-    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+    
 
 
     @*Custom-validation style*@

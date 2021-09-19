@@ -1,0 +1,77 @@
+﻿@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1>Categories</h1>
+        <p>
+            <a asp-action="Create" class="btn btn-success a-btn-slide-text btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <i class="fa fa-plus"></i>
+            </a>
+        </p>
+        <table class="tree table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        Name
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="treegrid-@item.Id" scope="row">
+                        <td>@item.Name</td>
+                        <td class="crud-btn">
+                            <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Categories" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Categories" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Categories" class="view"><i class="fa fa-eye" data-toggle="tooltip" title="Details"></i></a>
+                        </td>
+                    </tr>
+
+                    @if (item.Children.Any() && item.Children != null)
+                    {
+                        @foreach (var child in item.Children)
+                        {
+                            <tr class="treegrid-@child.Id treegrid-parent-@child.ParentId" scope="row">
+                                <td>@child.Name</td>
+                                <td class="crud-btn">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Categories" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Categories" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Categories" class="view"><i class="fa fa-eye" data-toggle="tooltip" title="Details"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+        
+
+@section addjs{
+    <script src="~/libs/jquery-treegrid/js/jquery.treegrid.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tree').treegrid();
+        })
+    </script>
+}
+@section addcss{
+    <link href="~/libs/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        ul{
+            padding-left:0;
+        }
+    </style>
+}

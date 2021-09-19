@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BlogPost>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1>Blogs</h1>
+
+        <p>
+            <a asp-action="Create" class="btn btn-success a-btn-slide-text btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <i class="fa fa-plus"></i>
+                <span class="mx-sm-1"><strong>Add</strong></span>
+            </a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Images
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        PublishedDate
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <img src="~/uploads/images/blog/mask/@item.Images.FirstOrDefault(i=>i.IsMain)?.FileName" width="70" height="70"/>
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.PublishedDate
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary a-btn-slide-text btn-sm">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <i class="fa fa-edit"></i>
+                            <span class="mx-sm-1"><strong>Edit</strong></span>
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary a-btn-slide-text btn-sm">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            <i class="fa fa-table"></i>
+                            <span class="mx-sm-1"><strong>Details</strong></span>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger a-btn-slide-text btn-sm">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <i class="fa fa-trash"></i>
+                            <span class="mx-sm-1"><strong>Delete</strong></span>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+        

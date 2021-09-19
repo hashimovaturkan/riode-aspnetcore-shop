@@ -1,0 +1,87 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1>Create Product</h1>
+
+        <form class="row" enctype="multipart/form-data" method="post">
+            <div class="col-md-4">
+                <div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SkuCode" class="control-label"></label>
+                        <input asp-for="SkuCode" class="form-control" />
+                        <span asp-validation-for="SkuCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BrandId" class="control-label"></label>
+                        <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label"></label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShortDescription" class="control-label"></label>
+                        <input asp-for="ShortDescription" class="form-control" />
+                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreatedByUserId" class="control-label"></label>
+                        <input asp-for="CreatedByUserId" class="form-control" />
+                        <span asp-validation-for="CreatedByUserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div style="width: 600px;" class="imager-container" id="viewer1" name="images">
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section addjs{
+    <script src="~/libs/multiple-imager-js/js/imager.js"></script>
+    <script>
+        $('#viewer1').imgadd({
+            tnWidth: '120px',
+            tnHeight: '120px',
+            fontSize: '55px',
+            plusInnerHtml: '',
+            plusBtnClass: undefined
+        });
+    </script>
+
+}
+
+@section addcss{
+    <script src="https://kit.fontawesome.com/1154e1d6ee.js" crossorigin="anonymous"></script>
+    <link href="~/libs/multiple-imager-js/css/imager.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/libs/multiple-imager-js/css/imager.css">
+
+}
+

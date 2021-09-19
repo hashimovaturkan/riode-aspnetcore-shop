@@ -61,6 +61,9 @@ namespace Riode_WebUI.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CategoryId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
@@ -76,16 +79,15 @@ namespace Riode_WebUI.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Quote")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("PublishedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WritedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("BlogPosts");
                 });
@@ -223,6 +225,9 @@ namespace Riode_WebUI.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMarked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -514,6 +519,39 @@ namespace Riode_WebUI.Migrations
                     b.ToTable("SpecificationValues");
                 });
 
+            modelBuilder.Entity("Riode_WebUI.Models.Entities.Subscribe", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("DeletedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("EmailConfirmedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscribes");
+                });
+
             modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogImage", b =>
                 {
                     b.HasOne("Riode_WebUI.Models.Entities.BlogPost", "Blog")
@@ -523,6 +561,15 @@ namespace Riode_WebUI.Migrations
                         .IsRequired();
 
                     b.Navigation("Blog");
+                });
+
+            modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogPost", b =>
+                {
+                    b.HasOne("Riode_WebUI.Models.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Riode_WebUI.Models.Entities.Category", b =>
@@ -613,7 +660,7 @@ namespace Riode_WebUI.Migrations
             modelBuilder.Entity("Riode_WebUI.Models.Entities.SpecificationValue", b =>
                 {
                     b.HasOne("Riode_WebUI.Models.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("SpecificationValues")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -649,6 +696,8 @@ namespace Riode_WebUI.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("ProductSizeColorCollections");
+
+                    b.Navigation("SpecificationValues");
                 });
 
             modelBuilder.Entity("Riode_WebUI.Models.Entities.Specification", b =>

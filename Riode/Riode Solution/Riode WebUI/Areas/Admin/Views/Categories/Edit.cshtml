@@ -1,0 +1,66 @@
+﻿@model Riode_WebUI.Models.Entities.Category
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <h1>Edit Category</h1>
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentId" class="control-label"></label>
+                        <select asp-for="ParentId" class="form-control" asp-items="ViewBag.ParentId"></select>
+                        <span asp-validation-for="ParentId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    @*<div class="form-group">
+                        <label asp-for="CreatedByUserId" class="control-label"></label>
+                        <input asp-for="CreatedByUserId" class="form-control" />
+                        <span asp-validation-for="CreatedByUserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreatedDate" class="control-label"></label>
+                        <input asp-for="CreatedDate" class="form-control" />
+                        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DeletedByUserId" class="control-label"></label>
+                        <input asp-for="DeletedByUserId" class="form-control" />
+                        <span asp-validation-for="DeletedByUserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DeletedDate" class="control-label"></label>
+                        <input asp-for="DeletedDate" class="form-control" />
+                        <span asp-validation-for="DeletedDate" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+

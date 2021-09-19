@@ -49,7 +49,7 @@ namespace Riode_WebUI.Migrations
                         column: x => x.BlogId,
                         principalTable: "BlogPosts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

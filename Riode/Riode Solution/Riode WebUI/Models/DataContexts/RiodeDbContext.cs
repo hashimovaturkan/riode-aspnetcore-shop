@@ -42,6 +42,8 @@ namespace Riode_WebUI.Models.DataContexts
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationCategoryItem> SpecificationCategoryCollection { get; set; }
         public DbSet<SpecificationValue> SpecificationValues { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
+        
 
 
     }

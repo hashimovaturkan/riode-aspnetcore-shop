@@ -37,13 +37,13 @@ namespace Riode_WebUI.Migrations
                         column: x => x.ProductId1,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_SpecificationValues_Specifications_SpecificationId1",
                         column: x => x.SpecificationId1,
                         principalTable: "Specifications",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

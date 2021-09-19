@@ -6,9 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\libs\" />
+    <Compile Remove="Areas\Admin\Models\**" />
+    <Content Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <None Remove="Areas\Admin\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="wwwroot\libs\multiple-imager-js\c#-classes\BooleanBinderProvider.cs" />
+    <Compile Include="wwwroot\libs\multiple-imager-js\c#-classes\ImageItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\uploads\videos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\libs\multiple-imager-js\js\imager.js" />
   </ItemGroup>
 
   <ItemGroup>

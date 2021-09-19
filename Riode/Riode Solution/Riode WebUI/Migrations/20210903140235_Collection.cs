@@ -29,7 +29,7 @@ namespace Riode_WebUI.Migrations
                         column: x => x.ColorId,
                         principalTable: "Colors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ProductSizeColorCollection_Products_ProductId",
                         column: x => x.ProductId,
@@ -41,7 +41,7 @@ namespace Riode_WebUI.Migrations
                         column: x => x.SizeId,
                         principalTable: "Sizes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

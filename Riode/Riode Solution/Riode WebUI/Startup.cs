@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Riode_WebUI.AppCode.Provider;
 using Riode_WebUI.Models.DataContexts;
 using System;
 using System.Collections.Generic;
@@ -25,17 +26,24 @@ namespace Riode_WebUI
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews()
+            services.AddControllersWithViews(cfg=> {
+                cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
+            })
                 //eger productla branddaki kimi referens ozu ozunu cagirirsa
                 .AddNewtonsoftJson(cfg=>
                 
                     cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 );
 
-
+            //bu dependency injectiondi ici ise sql'in adini basqasi rahat deyissin dyedi
+            //db context ucun inject standarti var
             services.AddDbContext<RiodeDbContext>(cfg=> {
                 cfg.UseSqlServer(configuration.GetConnectionString("cString"));
             }, ServiceLifetime.Scoped);
+
+            //service injection etmek ucun
+            //services.AddScoped<Classinadi>();
+
 
             //butun urller kicik herfli olsun
             services.AddRouting(cfg => cfg.LowercaseUrls = true);
