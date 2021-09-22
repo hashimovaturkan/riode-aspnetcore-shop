@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -6,12 +7,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Riode_WebUI.AppCode.Middlewares;
 using Riode_WebUI.AppCode.Provider;
 using Riode_WebUI.Models.DataContexts;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Riode_WebUI
@@ -49,6 +52,8 @@ namespace Riode_WebUI
             services.AddRouting(cfg => cfg.LowercaseUrls = true);
 
 
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
         }
 
         
@@ -63,7 +68,17 @@ namespace Riode_WebUI
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+
+            app.UseRequestLocalization(cfg=> {
+
+                cfg.AddSupportedUICultures("az","en");
+                cfg.AddSupportedCultures("az", "en");
+
+                cfg.RequestCultureProviders.Clear();
+                cfg.RequestCultureProviders.Add(new CultureProvider());
+            });
+
+            app.UseAudit();
 
             app.UseEndpoints(endpoints =>
             {
@@ -77,10 +92,23 @@ namespace Riode_WebUI
                  });
 
                 endpoints.MapControllerRoute(
+                      name: "areas-with-lang",
+                      pattern: "{lang}/{area:exists}/{controller=Dashboard}/{action=Index}/{id?}",
+                      constraints: new{
+                          lang="en|az|ru"
+                        }
+                    );
+
+                endpoints.MapControllerRoute(
                       name: "areas",
                       pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
                     );
 
+                endpoints.MapControllerRoute("default-with-lang", "{lang}/{controller=home}/{action=index}/{id?}",
+                    constraints: new
+                    {
+                        lang = "en|az|ru"
+                    });
                 endpoints.MapControllerRoute("default","{controller=home}/{action=index}/{id?}");
             });
         }

@@ -110,7 +110,10 @@ namespace Riode_WebUI.Controllers
 
                 string token = $"subscribetoken-{model.Id}-{DateTime.Now:yyyyMMddHHmmss}";
 
+                token = token.Encrypt();
+
                 string path = $"{Request.Scheme}://{Request.Host}/subscribe-confirm?token={token}";
+
 
                 var mailSend=configuration.SendEmail(model.Email, "Riode NewsLetter Subscribe", $"Please, use <a href={path}>this link</a> for subscribing");
 
@@ -141,6 +144,8 @@ namespace Riode_WebUI.Controllers
         [Route("subscribe-confirm")]
         public IActionResult SubscribeConfirm(string token)
         {
+            token = token.Decrypt();
+
             Match match=Regex.Match(token, @"subscribetoken-(?<id>\d+)-(?<executeTimeStamp>\d{14})");
             
 
@@ -166,6 +171,10 @@ namespace Riode_WebUI.Controllers
                 db.SaveChanges();
                 ViewBag.Message = Tuple.Create(false, "You were confirmed!");
 
+            }
+            else
+            {
+                ViewBag.Message = Tuple.Create(true, "Wrong Application!");
             }
             end:
             return View();

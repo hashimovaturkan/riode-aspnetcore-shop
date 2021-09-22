@@ -52,16 +52,19 @@
                             </p>
                             <div class="row mb-2">
                                 <div class="col-12 mb-4">
+                                    <label asp-for="Comment" class="control-label"></label>
                                     <textarea asp-for="Comment" class="form-control"
-                                              placeholder="Comment*"></textarea>
+                                              placeholder="@ContactResource.Comment"></textarea>
                                     <span asp-validation-for="Comment"></span>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <input asp-for="Name" class="form-control" placeholder="Name *">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" placeholder="@ContactResource.Name">
                                     <span asp-validation-for="Name"></span>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <input asp-for="Email" class="form-control" placeholder="Email *">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" placeholder="@ContactResource.Email">
                                     <span asp-validation-for="Email"></span>
                                 </div>
                             </div>
@@ -271,7 +274,7 @@
 
 @section addcss{
     
-
+    
 
     @*Custom-validation style*@
     @*<style>

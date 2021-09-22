@@ -19,15 +19,21 @@ namespace Riode_WebUI.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogImage", b =>
+            modelBuilder.Entity("Riode_WebUI.Models.Entities.AuditLog", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("BlogId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Area")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("CreatedByUserId")
                         .HasColumnType("bigint");
@@ -41,17 +47,30 @@ namespace Riode_WebUI.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FileName")
+                    b.Property<bool>("IsHttps")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Method")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("bit");
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QueryString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ResponseTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusCode")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("BlogImages");
+                    b.ToTable("AuditLogs");
                 });
 
             modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogPost", b =>
@@ -78,6 +97,9 @@ namespace Riode_WebUI.Migrations
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
@@ -552,17 +574,6 @@ namespace Riode_WebUI.Migrations
                     b.ToTable("Subscribes");
                 });
 
-            modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogImage", b =>
-                {
-                    b.HasOne("Riode_WebUI.Models.Entities.BlogPost", "Blog")
-                        .WithMany("Images")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Blog");
-                });
-
             modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogPost", b =>
                 {
                     b.HasOne("Riode_WebUI.Models.Entities.Category", "Category")
@@ -674,11 +685,6 @@ namespace Riode_WebUI.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Specification");
-                });
-
-            modelBuilder.Entity("Riode_WebUI.Models.Entities.BlogPost", b =>
-                {
-                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("Riode_WebUI.Models.Entities.Brand", b =>

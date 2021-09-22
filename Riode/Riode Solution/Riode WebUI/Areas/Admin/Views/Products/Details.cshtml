@@ -4,97 +4,100 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="main_content_iner overly_inner ">
-    <div class="container-fluid p-0 ">
-        <h1>Details</h1>
-        <table class="table">
+
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="text-center"><b>Product</b></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+
             <tbody>
                 <tr>
-                    <th scope="row">Name</th>
+                    <th>Images</th>
+                    <td>
+                        @foreach (var item in Model.Images)
+                        {
+                            <span class="image-box">
+                                @if (item.IsMain == true)
+                                {
+                                    <span class="image-desc">It is main image</span>
+                                }
+                                <img src="~/uploads/images/product/@item.FileName" width="70" height="70" class="mr-5" />
+                            </span>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <th>Name</th>
                     <td>@Model.Name</td>
                 </tr>
                 <tr>
-                    <th scope="row">Sku Code</th>
+                    <th>Sku Code</th>
                     <td>@Model.SkuCode</td>
                 </tr>
                 <tr>
-                    <th scope="row">Brand</th>
-                    <td>@Model.BrandId</td>
-                </tr>
-                <tr>
-                    <th scope="row">Category</th>
-                    <td>@Model.CategoryId</td>
-                </tr>
-                <tr>
-                    <th scope="row">Short Description</th>
-                    <td>@Model.ShortDescription</td>
+                    <th>Short Description</th>
+                    <td class="blog-content">@Model.ShortDescription</td>
                 </tr>
                 <tr>
                     <th scope="row">Description</th>
-                    <td>@Model.Description</td>
-                </tr>>
-                @foreach (var item in Model.ProductSizeColorCollections)
-                {
-                    <tr>
-                        <th scope="row">Color</th>
-                        <td>@item.ColorId</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Size</th>
-                        <td>@item.SizeId</td>
-                    </tr>
-                }
+                    <td class="blog-content">@Model.Description</td>
+                </tr>
                 <tr>
-                    <th scope="row">User Id (Create)</th>
+                    <th scope="row">Category</th>
+                    <td>@ViewData["CategoryId"]</td>
+                </tr>
+                <tr>
+                    <th scope="row">Brand</th>
+                    <td>@ViewData["BrandId"]</td>
+                </tr>
+                <tr>
+                    <th>Created User</th>
                     <td>@Model.CreatedByUserId</td>
                 </tr>
                 <tr>
-                    <th scope="row">Created Date</th>
+                    <th>Created Date</th>
                     <td>@Model.CreatedDate</td>
                 </tr>
                 <tr>
-                    <th scope="row">User Id (Delete)</th>
-                    <td>@Model.CreatedDate</td>
+                    <th>Deleted User</th>
+                    <td>@Model.DeletedByUserId</td>
                 </tr>
                 <tr>
-                    <th scope="row">Deleted Date</th>
+                    <th>Deleted Date</th>
                     <td>@Model.DeletedDate</td>
-                </tr>
-                <tr>
-                    <th scope="row">Images</th>
-                    <td class="image-box">
-                        @foreach (var item in Model.Images)
-                        {
-                            <img src="~/uploads/images/product/@item.FileName" width="70" height="70" class="mr-5" />
-
-                            @if (item.IsMain == true)
-                            {
-                                <span class="image-desc">It is main image</span>
-                            }
-
-                        }
-                    </td>
                 </tr>
             </tbody>
         </table>
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Edit" asp-route-id="@Model.Id" asp-controller="BlogPosts" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+            |
             <a asp-action="Index">Back to List</a>
         </div>
-
     </div>
 </div>
+
+
 
 
 @section addcss{
     <style>
         .image-box{
+            display:inline-block;
             position:relative;
         }
         .image-desc {
             position:absolute;
-            bottom:-10px;
+            top:-10px;
             left:0;
+            font-size:12px;
         }
     </style>
 }

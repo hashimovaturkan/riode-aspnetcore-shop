@@ -21,8 +21,11 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Colors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
+            int take = 5;
+            ViewBag.PageCount = Decimal.Ceiling((decimal)db.Colors.Where(b => b.DeletedByUserId == null).Count() / take);
+
             return View(await db.Colors.Where(s => s.DeletedByUserId == null).ToListAsync());
         }
 

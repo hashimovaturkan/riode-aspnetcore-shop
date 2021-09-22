@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,12 +9,17 @@ namespace Riode_WebUI.Models.Entities
 {
     public class ContactPost : BaseEntity
     {
-        [Required]
+        [Display(ResourceType =typeof(ContactResource),Name ="Name")]
+        [Required(ErrorMessageResourceType =typeof(ContactResource),ErrorMessageResourceName = "CantBeEmpty")]
         public string Name { get; set; }
-        [Required]
-        [EmailAddress]
+
+        [Display(ResourceType = typeof(ContactResource), Name = "Email")]
+        [Required(ErrorMessageResourceType = typeof(ContactResource), ErrorMessageResourceName = "CantBeEmpty")]
+        [EmailAddress(ErrorMessageResourceType = typeof(ContactResource), ErrorMessageResourceName = "İnvalidEmailAddress")]
         public string Email { get; set; }
-        [Required]
+
+        [Display(ResourceType = typeof(ContactResource), Name = "Comment")]
+        [Required(ErrorMessageResourceType = typeof(ContactResource), ErrorMessageResourceName = "CantBeEmpty")]
         public string Comment { get; set; }
         public string Answer { get; set; }
         public DateTime? AnswerDate{ get; set; }

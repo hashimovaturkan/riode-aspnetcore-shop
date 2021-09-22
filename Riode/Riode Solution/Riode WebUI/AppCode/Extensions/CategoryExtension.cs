@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Riode_WebUI.AppCode.Extentions
+namespace Riode_WebUI.AppCode.Extensions
 {
     static public partial class Extension
     {
@@ -50,7 +50,22 @@ namespace Riode_WebUI.AppCode.Extentions
             }
         }
 
+
+        public static IEnumerable<Category> GetCategoriesHierarchy(this Category category)
+        {
+            if(category.ParentId != null)
+            yield return category;
+
+            if(category.Children != null)
+            {
+                foreach (var item in category.Children.SelectMany(p=>p.GetCategoriesHierarchy()))
+                {
+                    yield return item;
+                }
+            }
+        }
     }
+
 
 
 }

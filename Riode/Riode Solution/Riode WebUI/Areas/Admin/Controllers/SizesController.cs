@@ -21,9 +21,15 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Sizes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await db.Sizes.Where(s=>s.DeletedByUserId == null).ToListAsync());
+            int take = 5;
+
+            ViewBag.PageCount = Decimal.Ceiling((decimal)db.Sizes.Where(b => b.DeletedByUserId == null).Count() / take);
+            return View(await db.Sizes.Where(s=>s.DeletedByUserId == null)
+                                             .Skip((page - 1) * take)
+                                            .Take(take)
+                                            .ToListAsync());
         }
 
         // GET: Admin/Sizes/Details/5

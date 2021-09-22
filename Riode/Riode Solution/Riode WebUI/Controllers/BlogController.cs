@@ -29,7 +29,6 @@ namespace Riode_WebUI.Controllers
 
 
             datas.BlogPost = db.BlogPosts
-                .Include(b => b.Images)
                 .FirstOrDefault(s => s.DeletedByUserId == null && s.Id == id);
 
             if (datas.Categories == null || datas.BlogPost == null)
@@ -43,7 +42,6 @@ namespace Riode_WebUI.Controllers
         public IActionResult Index()
         {
             var datas = db.BlogPosts
-                .Include(b => b.Images.Where(c => c.IsMain))
                 .Where(b => b.DeletedByUserId == null)
                 .ToList();
             return View(datas);

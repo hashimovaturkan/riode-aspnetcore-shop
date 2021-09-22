@@ -10,6 +10,7 @@ namespace Riode_WebUI.AppCode.Extensions
 {
     static public partial class Extension
     {
+        const string securityKey = "riode-app-2021-code-hash";
 
         //hashing algorithms
         public static string ToMd5(this string text)
@@ -75,8 +76,18 @@ namespace Riode_WebUI.AppCode.Extensions
 
         }
 
+        public static string Encrypt(this string value)
+        {
+            return Encrypt(value, securityKey.ToMd5());
+        }
+
         public static string Decrypt(this string value, string key)
         {
+            if (string.IsNullOrWhiteSpace(value))
+                return "";
+
+            value = value.Replace(" ","+");
+
             try
             {
                 using (var provider = new TripleDESCryptoServiceProvider())
@@ -113,6 +124,12 @@ namespace Riode_WebUI.AppCode.Extensions
             }
 
 
+        }
+
+        public static string Decrypt(this string value)
+        {
+
+            return Decrypt(value, securityKey.ToMd5());
         }
 
     }

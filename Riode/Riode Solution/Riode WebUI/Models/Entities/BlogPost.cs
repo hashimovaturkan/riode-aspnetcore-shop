@@ -10,7 +10,7 @@ namespace Riode_WebUI.Models.Entities
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime PublishedDate { get; set; }
-        public ICollection<BlogImage> Images { get; set; }
+        public string ImageUrl { get; set; }
         public long? CategoryId{ get; set; }
         public virtual Category Category { get; set; }
 

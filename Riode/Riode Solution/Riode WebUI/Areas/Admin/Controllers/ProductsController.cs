@@ -44,7 +44,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            
             var product = await db.Products
                 .Include(p => p.Brand)
                 .Include(p => p.Category)
@@ -63,6 +63,8 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
+
+            ViewData["ColorId"] = db.ProductSizeColorCollection.Select(p=>p.Color).ToList();
             ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name");
             return View();
@@ -119,7 +121,8 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await db.Products.FindAsync(id);
+            var product = await db.Products.Include(k=>k.Images)
+                                            .FirstOrDefaultAsync(k => k.Id == id && k.DeletedByUserId == null);
             if (product == null)
             {
                 return NotFound();
@@ -129,9 +132,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(product);
         }
 
-        // POST: Admin/Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("Name,SkuCode,BrandId,CategoryId,ShortDescription,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Product product)

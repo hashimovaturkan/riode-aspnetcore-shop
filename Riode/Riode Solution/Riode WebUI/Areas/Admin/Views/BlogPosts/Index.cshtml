@@ -4,71 +4,79 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="main_content_iner overly_inner ">
-    <div class="container-fluid p-0 ">
-        <h1>Blogs</h1>
 
-        <p>
-            <a asp-action="Create" class="btn btn-success a-btn-slide-text btn-sm">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                <i class="fa fa-plus"></i>
-                <span class="mx-sm-1"><strong>Add</strong></span>
-            </a>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Images
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        PublishedDate
-                    </th>
-                    <th>
-                        Category
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>
-                        <img src="~/uploads/images/blog/mask/@item.Images.FirstOrDefault(i=>i.IsMain)?.FileName" width="70" height="70"/>
-                    </td>
-                    <td>
-                        @item.Title
-                    </td>
-                    <td>
-                        @item.PublishedDate
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary a-btn-slide-text btn-sm">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            <i class="fa fa-edit"></i>
-                            <span class="mx-sm-1"><strong>Edit</strong></span>
-                        </a>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary a-btn-slide-text btn-sm">
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            <i class="fa fa-table"></i>
-                            <span class="mx-sm-1"><strong>Details</strong></span>
-                        </a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger a-btn-slide-text btn-sm">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            <i class="fa fa-trash"></i>
-                            <span class="mx-sm-1"><strong>Delete</strong></span>
-                        </a>
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2><b>Blogs</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a asp-action="Create" asp-controller="BlogPosts" class="btn btn-success"><i class="fa fa-plus "></i> <span>Add New Blog</span></a>
+                        <a asp-action="Delete" asp-controller="BlogPosts" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>PublishedDate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="check-content">
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox-@item.Id" name="options[]" value="1">
+                                    <label for="checkbox-@item.Id"></label>
+                                </span>
+                            </td>
+                            <td>
+                                <img src="~/uploads/images/blog/mask/@item.ImageUrl" width="80" height="70" />
+                            </td>
+                            <td>@item.Title</td>
+                            <td>@item.PublishedDate</td>
+                            <td class="crud-btn">
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="BlogPosts" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="BlogPosts" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.Id" asp-controller="BlogPosts" class="view"><i class="fa fa-eye" data-toggle="tooltip" title="Details"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <ul class="pagination">
+                    <li class="page-item "><a asp-action="Index" class="previous-link page-link">Previous</a></li>
+                    
+                    @for (int i = 1; i <= ViewBag.PageCount; i++)
+                    {
+                        <li class="page-item"><a asp-action="Index" asp-route-page="@i" class="page-link page-count">@i</a></li>
+                    }
+                    <li class="page-item" ><a asp-action="Index"  class="next-link page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+
+
 
 
 

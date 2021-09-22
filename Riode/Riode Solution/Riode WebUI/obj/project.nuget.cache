@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "mvZOS7XOUhBSKIADPpcUOsibbxBz3k4ihslb7d2r/ccrxww08jRqlmlbVoNd39WbhDEle+4GqZkCQ9qAR/om7Q==",
+  "dgSpecHash": "XTz5ZPIbztVzX6LYS9jNNKaOT+7hInt9geWXod4BvROjRhAMxHU+2Za2jvCgU5i1/Fn/A7uKdaTDkJXtd3cXCw==",
   "success": true,
   "projectFilePath": "E:\\Lesson folder\\riode-aspnetcore-shop\\Riode\\Riode Solution\\Riode WebUI\\Riode WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.9\\microsoft.aspnetcore.jsonpatch.5.0.9.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.9\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.9.nupkg.sha512",

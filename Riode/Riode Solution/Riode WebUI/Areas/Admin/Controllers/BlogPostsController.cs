@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,17 +16,26 @@ namespace Riode_WebUI.Areas.Admin.Controllers
     [Area("Admin")]
     public class BlogPostsController : Controller
     {
-        private readonly RiodeDbContext db;
+        readonly RiodeDbContext db;
+        readonly IWebHostEnvironment env;
 
-        public BlogPostsController(RiodeDbContext context)
+        public BlogPostsController(RiodeDbContext db,IWebHostEnvironment env)
         {
-            db = context;
+            this.db = db;
+            this.env = env;
         }
 
         // GET: Admin/BlogPosts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            var riodeDbContext = db.BlogPosts.Include(b => b.Category).Include(b=>b.Images);
+            int take = 5;
+
+            ViewBag.PageCount = Decimal.Ceiling((decimal)db.BlogPosts.Where(b => b.DeletedByUserId == null).Count() / take);
+            var riodeDbContext = db.BlogPosts.Where(b=>b.DeletedByUserId == null)
+                                            .Include(b => b.Category)
+                                            .OrderByDescending(b=>b.Id)
+                                            .Skip((page-1)*take)
+                                            .Take(take);
             return View(await riodeDbContext.ToListAsync());
         }
 
@@ -39,8 +51,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
             var blogPost = await db.BlogPosts
                 .Include(b => b.Category)
-                .Include(i=>i.Images)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
             if (blogPost == null)
             {
                 return NotFound();
@@ -52,24 +63,44 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         // GET: Admin/BlogPosts/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
 
-        // POST: Admin/BlogPosts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Content,PublishedDate,CategoryId,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] BlogPost blogPost)
+        public async Task<IActionResult> Create(BlogPost blogPost, IFormFile file)
         {
+
+            if (file == null)
+            {
+                ModelState.AddModelError("file", "There is not image");
+            }
+
             if (ModelState.IsValid)
             {
+                string extension = Path.GetExtension(file.FileName);
+                blogPost.ImageUrl = $"{Guid.NewGuid()}{extension}";
+
+                string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                       "wwwroot",
+                                                       "uploads",
+                                                       "images",
+                                                       "blog",
+                                                       "mask",
+                                                       blogPost.ImageUrl);
+
+                using (var stream=new FileStream(physicalFileName, FileMode.Create,FileAccess.Write))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
                 db.Add(blogPost);
                 await db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Id", blogPost.CategoryId);
+            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", blogPost.CategoryId);
             return View(blogPost);
         }
 
@@ -86,27 +117,78 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Id", blogPost.CategoryId);
+            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", blogPost.CategoryId);
             return View(blogPost);
         }
 
-        // POST: Admin/BlogPosts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Title,Content,PublishedDate,CategoryId,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(long id, BlogPost blogPost, IFormFile file, string fileTemp)
         {
             if (id != blogPost.Id)
             {
                 return NotFound();
             }
 
+            if (string.IsNullOrWhiteSpace(fileTemp) && file==null)
+            {
+                ModelState.AddModelError("file", "Image was added!");
+            }
+
+           
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    db.Update(blogPost);
+                    //db.Update(blogPost);
+
+                    var entity = await db.BlogPosts.FirstOrDefaultAsync(b=> b.Id == id && b.DeletedByUserId == null);
+
+                    if(entity == null)
+                    {
+                        return NotFound();
+                    }
+
+                    entity.Title = blogPost.Title;
+                    entity.Content = blogPost.Content;
+
+
+                    if (file != null)
+                    {
+                        string extension = Path.GetExtension(file.FileName);
+                        blogPost.ImageUrl = $"{Guid.NewGuid()}{extension}";
+
+                        string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                               "wwwroot",
+                                                               "uploads",
+                                                               "images",
+                                                               "blog",
+                                                               "mask",
+                                                               blogPost.ImageUrl);
+
+                        using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(entity.ImageUrl))
+                        {
+                            System.IO.File.Delete(Path.Combine(env.ContentRootPath,
+                                                              "wwwroot",
+                                                              "uploads",
+                                                              "images",
+                                                              "blog",
+                                                              "mask",
+                                                              entity.ImageUrl));
+                        }
+
+                        entity.ImageUrl = blogPost.ImageUrl;
+                        
+                    }
+
+
                     await db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -122,7 +204,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Id", blogPost.CategoryId);
+            ViewData["CategoryId"] = new SelectList(db.Categories, "Name", "Id", blogPost.CategoryId);
             return View(blogPost);
         }
 
@@ -136,7 +218,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
             var blogPost = await db.BlogPosts
                 .Include(b => b.Category)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
             if (blogPost == null)
             {
                 return NotFound();
@@ -158,7 +240,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
         private bool BlogPostExists(long id)
         {
-            return db.BlogPosts.Any(e => e.Id == id);
+            return db.BlogPosts.Any(e => e.Id == id && e.DeletedByUserId == null);
         }
     }
 }

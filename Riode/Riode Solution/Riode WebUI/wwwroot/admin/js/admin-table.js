@@ -34,3 +34,41 @@ $(document).ready(function () {
 	
 });
 
+
+//pagnation 
+
+//$(document).ready(function () {
+//	let page = window.location.search.substring(1).split("=")[1];
+//	if (page == undefined) {
+//		page = 1;
+//	}
+
+//	if (page == 1) {
+
+//		$(".previous-link")?.addClass("disabled");
+//	}
+//	else {
+//		$(".previous-link")?.removeClass("disabled");
+//    }
+
+
+//	$(".page-count")?.each(function (index, item) {
+//		if ($(this).text() == page) {
+//			$(this).parent('li').addClass("active");
+//			$(this).addClass("disabled");
+//		}
+//		else {
+//			$(this).parent('li').removeClass("active");
+//			$(this).removeClass("disabled");
+//		}
+
+//	})
+
+//	//$(".next-link").attr("asp-route-page", page + 1);
+//	//$(".previous-link").attr("asp-route-page", page - 1);
+
+
+
+	
+//})
+

@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Riode_WebUI.AppCode.Extentions
+namespace Riode_WebUI.AppCode.Extensions
 {
     static public partial class Extension
     {

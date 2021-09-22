@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.BrandsModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 
@@ -14,34 +16,32 @@ namespace Riode_WebUI.Areas.Admin.Controllers
     public class BrandsController : Controller
     {
         private readonly RiodeDbContext db;
-
-        public BrandsController(RiodeDbContext db)
+        readonly IMediator mediator;
+        public BrandsController(RiodeDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
 
         // GET: Admin/Brands
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(BrandPagedQuery query)
         {
-            return View(await db.Brands.Where(s => s.DeletedByUserId == null).ToListAsync());
+            var response =await mediator.Send(query);
+
+            return View(response);
         }
 
         // GET: Admin/Brands/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(BrandSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var brand = await db.Brands
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (brand == null)
-            {
-                return NotFound();
-            }
-
-            return View(brand);
+            return View(response);
         }
 
         // GET: Admin/Brands/Create
@@ -53,31 +53,26 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Brand brand)
+        public async Task<IActionResult> Create(BrandCreateCommand command)
         {
             if (ModelState.IsValid)
             {
-                db.Add(brand);
-                await db.SaveChangesAsync();
+                await mediator.Send(command);
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(command);
         }
 
         // GET: Admin/Brands/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(BrandSingleQuery query)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var response = await mediator.Send(query);
 
-            var brand = await db.Brands.FindAsync(id);
-            if (brand == null)
+            if (response == null)
             {
                 return NotFound();
             }
-            return View(brand);
+            return View(response);
         }
 
         
@@ -114,21 +109,16 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Brands/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public async Task<IActionResult> Delete(BrandSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var brand = await db.Brands
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (brand == null)
-            {
-                return NotFound();
-            }
-
-            return View(brand);
+            return View(response);
         }
 
         // POST: Admin/Brands/Delete/5
