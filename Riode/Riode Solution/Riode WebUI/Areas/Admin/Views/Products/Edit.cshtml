@@ -17,34 +17,12 @@
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
-                    @*<div class="form-group ">
-                            <label class="control-label">
-                                Images
-                            </label>
+                    <div class="form-group">
+                        <div style="width: 600px;" class="imager-container" id="viewer1" name="files">
                             @foreach (var item in Model.Images)
                             {
-                                <label for="file" class="image-input" data-imgurl="/uploads/images/product/@item.FileName">
-                                    <input name="fileTemp" value="@item.FileName" type="hidden" />
-                                    <span>x</span>
-                                </label>
-                                <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
+                                <label thumb-url='/uploads/images/product/@item.FileName' image-id="@item.Id" @(item.IsMain == true ? "checked" :"")></label>
                             }
-                        </div>*@
-                    <div class="form-group ">
-                        <div style="width: 600px;" class="imager-container" id="viewer1" name="images">
-                            <div class="viewer" style="height:300px; width:300px;background-image: url('/uploads/images/product/@Model.Images?.FirstOrDefault(i=>i.IsMain)?.FileName');">
-                                <button class="img-plus img-plus-no-bt" type="button" style="width: 120px; height: 120px; font-size: 55px;"></button>
-                            </div>
-                            <div class="viewer-thumbs" name="image">
-                                @foreach (var item in Model.Images)
-                                {
-                                    <label for="@item.Id" class="img-thumb @(item.IsMain?"active":"")" style="background-image: url('/uploads/images/product/@item.FileName'); min-width: 100px;height: 100px;">
-                                        <span class="remove-thumb"></span>
-                                        <input name="i.File" type="file" accept="image/x-png,image/gif,image/jpeg">
-                                        <input type="radio" name="i.IsMain" id="@item.Id">
-                                    </label>
-                                }
-                            </div>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -72,28 +50,6 @@
                         <input asp-for="Description" class="form-control" />
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-
-                    @*<div class="form-group">
-                            <label asp-for="CategoryId" class="control-label"></label>
-                            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                            <span asp-validation-for="CategoryId" class="text-danger"></span>
-                        </div>
-                        <input type="hidden" asp-for="Id" />
-                        <div class="form-group">
-                            <label asp-for="CreatedByUserId" class="control-label"></label>
-                            <input asp-for="CreatedByUserId" class="form-control" />
-                            <span asp-validation-for="CreatedByUserId" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="DeletedByUserId" class="control-label"></label>
-                            <input asp-for="DeletedByUserId" class="form-control" />
-                            <span asp-validation-for="DeletedByUserId" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="DeletedDate" class="control-label"></label>
-                            <input asp-for="DeletedDate" class="form-control" />
-                            <span asp-validation-for="DeletedDate" class="text-danger"></span>
-                        </div>*@
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>

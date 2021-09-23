@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Riode_WebUI.Models.FormModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +20,9 @@ namespace Riode_WebUI.Models.Entities
         public virtual ICollection<ProductImage> Images { get; set; }
         public virtual ICollection<ProductSizeColorItem> ProductSizeColorCollections { get; set; }
         public virtual ICollection<SpecificationValue> SpecificationValues { get; set; }
+
+        [NotMapped] //database'a dusmesin
+        public virtual ImageItemFormModel[] Files { get; set; }
 
     }
 }

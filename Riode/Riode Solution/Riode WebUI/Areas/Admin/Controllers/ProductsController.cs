@@ -31,7 +31,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             var riodeDbContext = db.Products
                 .Include(p => p.Brand)
                 .Include(p => p.Category)
-                .Include(p=>p.Images)
+                .Include(p=>p.Images.Where(i => i.DeletedDate == null))
                 .Include(p=>p.ProductSizeColorCollections)
                 .Where(s => s.DeletedByUserId == null);
             return View(await riodeDbContext.ToListAsync());
@@ -48,7 +48,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             var product = await db.Products
                 .Include(p => p.Brand)
                 .Include(p => p.Category)
-                .Include(p => p.Images)
+                .Include(p => p.Images.Where(i => i.DeletedDate == null))
                 .Include(p => p.ProductSizeColorCollections.Where(s => s.ProductId == id))
                 .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -121,8 +121,8 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await db.Products.Include(k=>k.Images)
-                                            .FirstOrDefaultAsync(k => k.Id == id && k.DeletedByUserId == null);
+            var product = await db.Products.Include(k=>k.Images.Where(i=>i.DeletedDate==null))
+                                            .FirstOrDefaultAsync(k => k.Id == id && k.DeletedDate==null);
             if (product == null)
             {
                 return NotFound();
@@ -135,7 +135,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Name,SkuCode,BrandId,CategoryId,ShortDescription,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Product product)
+        public async Task<IActionResult> Edit(long id, Product product)
         {
             if (id != product.Id)
             {
@@ -144,22 +144,72 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var entity =await db.Products
+                    .Include(p=>p.Images.Where(pi=>pi.DeletedByUserId == null))
+                    .FirstOrDefaultAsync(p => p.Id == product.Id && p.DeletedByUserId == null);
+                entity.Name = product.Name;
+                entity.Description = product.Description;
+
+                /// Silinmishler ---start
+                int[] deletedImageIds = product.Files.Where(p => p.Id > 0 && string.IsNullOrWhiteSpace(p.TempPath))
+                                                .Select(p => p.Id.Value)
+                                                .ToArray();
+
+                foreach (var itemId in deletedImageIds)
                 {
-                    db.Update(product);
-                    await db.SaveChangesAsync();
+                    var oldImage = await db.ProductImages.FirstOrDefaultAsync(pi => pi.ProductId == entity.Id && pi.Id == itemId);
+
+                    if (oldImage == null)
+                        continue;
+
+                    oldImage.DeletedDate = DateTime.Now;
+                    oldImage.DeletedByUserId = 1;
                 }
-                catch (DbUpdateConcurrencyException)
+                /// Silinmishler ---end
+
+                foreach (var item in product.Files.Where(f=>(f.Id>0 && !string.IsNullOrWhiteSpace(f.TempPath)) //bazada olub deyismeyenler
+                || (f.File != null && f.Id ==null)))///yeni yarananlar
                 {
-                    if (!ProductExists(product.Id))
+                    if(item.File == null) //deyismeyenler
                     {
-                        return NotFound();
+                        var oldImage = await db.ProductImages.FirstOrDefaultAsync(pi => pi.ProductId == entity.Id && pi.Id == item.Id);
+
+                        if (oldImage == null)
+                            continue;
+
+                        oldImage.IsMain = item.IsMain;
                     }
-                    else
+                    else if(item.File != null) //yeni elave olunanlar
                     {
-                        throw;
+                        string extension = Path.GetExtension(item.File.FileName);
+                        string fileName = $"{Guid.NewGuid()}{extension}";
+
+                        string physicalFileName = Path.Combine(env.ContentRootPath,
+                                                               "wwwroot",
+                                                               "uploads",
+                                                               "images",
+                                                               "product",
+                                                               fileName);
+
+                        using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+                        {
+                            await item.File.CopyToAsync(stream);
+                        }
+
+                        entity.Images.Add(new ProductImage
+                        {
+                            FileName = fileName,
+                            IsMain = item.IsMain
+                        });
+
                     }
                 }
+
+
+
+
+
+                await db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Id", product.BrandId);
