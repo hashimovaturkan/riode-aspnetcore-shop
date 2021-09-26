@@ -12,7 +12,7 @@ namespace Riode_WebUI.AppCode.Application.BrandsModule
 {
     public class BrandSingleQuery: IRequest<Brand>
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         public class BrandSingleQueryHandler : IRequestHandler<BrandSingleQuery, Brand>
         {
@@ -23,7 +23,8 @@ namespace Riode_WebUI.AppCode.Application.BrandsModule
             }
             public async Task<Brand> Handle(BrandSingleQuery request, CancellationToken cancellationToken)
             {
-                if (request.Id<=0)
+                //sual: burda null olub olmasini nie yoxlamirig <=0 eliyirik
+                if (request.Id<=0 || request.Id == null)
                 {
                     return null;
                 }

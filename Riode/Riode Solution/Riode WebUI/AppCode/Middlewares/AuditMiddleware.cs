@@ -21,7 +21,7 @@ namespace Riode_WebUI.AppCode.Middlewares
 
         public async Task Invoke(HttpContext httpContext)
         {
-            using (var scope =httpContext.RequestServices.CreateScope())
+            using (var scope = httpContext.RequestServices.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<RiodeDbContext>();
 

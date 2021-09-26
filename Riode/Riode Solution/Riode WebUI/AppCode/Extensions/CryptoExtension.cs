@@ -18,6 +18,7 @@ namespace Riode_WebUI.AppCode.Extensions
             //md5 usulu tehlukesizdirki? artiq sifrelenmis sayilmir axi hami onu decrypto saytlarindan
             // istifade ederek cevirse
             //ozdeki yene gelib linkde deyisiklik etsek sehv olacaq axi ne xeyri oldu gizletmeyimizin
+            //cavab: biz ona her onsuz deyisdiririk code da fikir versen
             using (var provider = new MD5CryptoServiceProvider())
             {
                 byte[] textBuffer = Encoding.UTF8.GetBytes(text);

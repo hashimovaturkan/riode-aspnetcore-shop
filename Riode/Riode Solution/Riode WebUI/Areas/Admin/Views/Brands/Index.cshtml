@@ -43,20 +43,13 @@
                             <td>@item.Name</td>
                             <td class="crud-btn">
                                 <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Brands" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Brands" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                <a onclick="removeEntity(@item.Id)" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                 <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Brands" class="view"><i class="fa fa-eye" data-toggle="tooltip" title="Details"></i></a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            @*<li class="page-item "><a asp-action="Index" class="previous-link page-link">Previous</a></li>
-
-            @for (int i = 1; i <= ViewBag.PageCount; i++)
-            {
-                <li class="page-item"><a asp-action="Index" asp-route-page="@i" class="page-link page-count">@i</a></li>
-            }
-            <li class="page-item" ><a asp-action="Index"  class="next-link page-link">Next</a></li>*@
 
 
         </div>

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.ColorsModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
+using Riode_WebUI.Models.ViewModels;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
@@ -14,37 +17,34 @@ namespace Riode_WebUI.Areas.Admin.Controllers
     public class ColorsController : Controller
     {
         private readonly RiodeDbContext db;
+        readonly IMediator mediator;
 
-        public ColorsController(RiodeDbContext db)
+        public ColorsController(RiodeDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
 
         // GET: Admin/Colors
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(ColorPagedQuery query)
         {
-            int take = 5;
-            ViewBag.PageCount = Decimal.Ceiling((decimal)db.Colors.Where(b => b.DeletedByUserId == null).Count() / take);
+            var response = await mediator.Send(query);
+            if (response == null)
+                return NotFound();
 
-            return View(await db.Colors.Where(s => s.DeletedByUserId == null).ToListAsync());
+            return View(response);
         }
 
         // GET: Admin/Colors/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(ColorSingleQuery query)
         {
-            if (id == null)
+            var response =await mediator.Send(query);
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var color = await db.Colors
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (color == null)
-            {
-                return NotFound();
-            }
-
-            return View(color);
+            return View(response);
         }
 
         // GET: Admin/Colors/Create
@@ -56,97 +56,51 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HexCode,Name,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Color color)
+        public async Task<IActionResult> Create(ColorCreateCommand command)
         {
-            if (ModelState.IsValid)
-            {
-                db.Add(color);
-                await db.SaveChangesAsync();
+            var response = await mediator.Send(command);
+            if(response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            return View(color);
+            
+            return View(response);
         }
 
         // GET: Admin/Colors/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(ColorSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+            if (response == null)
             {
                 return NotFound();
             }
-
-            var color = await db.Colors.FindAsync(id);
-            if (color == null)
-            {
-                return NotFound();
-            }
-            return View(color);
+            var vm =new ColorViewModel();
+            vm.Name = response.Name;
+            vm.Description = response.Description;
+            vm.HexCode = response.HexCode;
+            return View(vm);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("HexCode,Name,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Color color)
+        public async Task<IActionResult> Edit(ColorUpdateCommand command)
         {
-            if (id != color.Id)
-            {
-                return NotFound();
-            }
+            var response =await mediator.Send(command);
 
-            if (ModelState.IsValid)
+            if(response > 0)
             {
-                try
-                {
-                    db.Update(color);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ColorExists(color.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            return View(color);
+               
+            return View(response);
         }
 
-        public async Task<IActionResult> Delete(long? id)
+        
+        [HttpPost]
+        public async Task<IActionResult> Delete(ColorDeleteCommand command)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var color = await db.Colors
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (color == null)
-            {
-                return NotFound();
-            }
-
-            return View(color);
-        }
-
-        // POST: Admin/Colors/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            var color = await db.Colors.FindAsync(id);
-            db.Colors.Remove(color);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ColorExists(long id)
-        {
-            return db.Colors.Any(e => e.Id == id && e.DeletedByUserId == null);
+            var response = await mediator.Send(command);
+            return Json(response);
         }
     }
 }

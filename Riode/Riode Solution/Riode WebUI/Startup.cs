@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,6 +52,7 @@ namespace Riode_WebUI
             //butun urller kicik herfli olsun
             services.AddRouting(cfg => cfg.LowercaseUrls = true);
 
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 

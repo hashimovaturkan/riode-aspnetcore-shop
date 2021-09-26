@@ -213,3 +213,8 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.pdb
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.genruntimeconfig.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.AssemblyReference.cache
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Create.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Delete.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Details.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Edit.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Index.cshtml.g.cs

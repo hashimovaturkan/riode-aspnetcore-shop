@@ -15,11 +15,9 @@ namespace Riode_WebUI.Areas.Admin.Controllers
     [Area("Admin")]
     public class BrandsController : Controller
     {
-        private readonly RiodeDbContext db;
         readonly IMediator mediator;
         public BrandsController(RiodeDbContext db, IMediator mediator)
         {
-            this.db = db;
             this.mediator = mediator;
         }
 
@@ -55,9 +53,9 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BrandCreateCommand command)
         {
-            if (ModelState.IsValid)
+            var id = await mediator.Send(command);
+            if (id > 0)
             {
-                await mediator.Send(command);
                 return RedirectToAction(nameof(Index));
             }
             return View(command);
@@ -72,69 +70,38 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(response);
+
+            //SUAL: burda nie elave viewmodel yazadiriqki ondansa ele brand yazaqda viewda model kimi
+            //onsuz heccur user nese eliye bilmez
+            var vm = new BrandViewModel();
+            vm.Name = response.Name;
+            vm.Description = response.Description;
+            vm.Id = response.Id;
+            return View(vm);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Name,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Brand brand)
+        public async Task<IActionResult> Edit(BrandUpdateCommand command)
         {
-            if (id != brand.Id)
-            {
-                return NotFound();
-            }
+            var response =await mediator.Send(command);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(brand);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BrandExists(brand.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            if (response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            return View(brand);
+            
+            return View(command);
         }
 
-        // GET: Admin/Brands/Delete/5
-        public async Task<IActionResult> Delete(BrandSingleQuery query)
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(BrandDeleteCommand command)
         {
-            var response = await mediator.Send(query);
 
-            if (response == null)
-            {
-                return NotFound();
-            }
+            var result = await mediator.Send(command);
+            return Json(result);
 
-            return View(response);
         }
 
-        // POST: Admin/Brands/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            var brand = await db.Brands.FindAsync(id);
-            db.Brands.Remove(brand);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool BrandExists(long id)
-        {
-            return db.Brands.Any(e => e.Id == id && e.DeletedByUserId == null);
-        }
     }
 }

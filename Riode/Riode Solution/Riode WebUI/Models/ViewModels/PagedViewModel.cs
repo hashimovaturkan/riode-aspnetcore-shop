@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Riode_WebUI.Models.ViewModels
 {
+    //sehifelenme olanda pagination buttonlar gorsenir unutma!
     public class PagedViewModel<T>
             where T : class
     {
