@@ -40,8 +40,15 @@ using Resources;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\Views\_ViewImports.cshtml"
+using Riode_WebUI.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c774d292719e194c02f109e6d0baf2097c229587", @"/Views/Shared/Error404.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e4f4af6455d2873d54d65a84350efc54b3deae2f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f4a20e49e3ac0973d957196a59aea09d5bdb274a", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error404 : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/uploads/images/subpages/404.png"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -82,7 +89,7 @@ using Resources;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"page-content\">\r\n    <section class=\"error-section d-flex flex-column justify-content-center align-items-center text-center pl-3 pr-3\">\r\n        <h1 class=\"mb-2 ls-m\">Error 404</h1>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c774d292719e194c02f109e6d0baf2097c2295875480", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c774d292719e194c02f109e6d0baf2097c2295875697", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

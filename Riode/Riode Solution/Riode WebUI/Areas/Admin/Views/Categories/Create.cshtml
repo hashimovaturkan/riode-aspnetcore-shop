@@ -1,4 +1,4 @@
-﻿@model Riode_WebUI.Models.Entities.Category
+﻿@model CategoryCreateCommand
 
 @{
     ViewData["Title"] = "Create";
@@ -28,21 +28,6 @@
                         <label asp-for="Description" class="control-label"></label>
                         <input asp-for="Description" class="form-control" />
                         <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="CreatedByUserId" class="control-label"></label>
-                        <input asp-for="CreatedByUserId" class="form-control" />
-                        <span asp-validation-for="CreatedByUserId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DeletedByUserId" class="control-label"></label>
-                        <input asp-for="DeletedByUserId" class="form-control" />
-                        <span asp-validation-for="DeletedByUserId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DeletedDate" class="control-label"></label>
-                        <input asp-for="DeletedDate" class="form-control" />
-                        <span asp-validation-for="DeletedDate" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />

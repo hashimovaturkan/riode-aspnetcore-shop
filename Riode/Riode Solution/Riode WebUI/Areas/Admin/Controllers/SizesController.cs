@@ -2,55 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.SizesModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class SizesController : Controller
     {
         private readonly RiodeDbContext db;
+        readonly IMediator mediator;
 
-        public SizesController(RiodeDbContext db)
+        public SizesController(RiodeDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
 
-        // GET: Admin/Sizes
-        public async Task<IActionResult> Index(int page = 1)
+        [Authorize(Policy ="admin.sizes.index")]
+        public async Task<IActionResult> Index(SizePagedQuery query)
         {
-            int take = 5;
+            var response =await mediator.Send(query);
 
-            ViewBag.PageCount = Decimal.Ceiling((decimal)db.Sizes.Where(b => b.DeletedByUserId == null).Count() / take);
-            return View(await db.Sizes.Where(s=>s.DeletedByUserId == null)
-                                             .Skip((page - 1) * take)
-                                            .Take(take)
-                                            .ToListAsync());
+            if(response == null)
+                return NotFound();
+
+            return View(response);
         }
 
-        // GET: Admin/Sizes/Details/5
-        public async Task<IActionResult> Details(long? id)
+        [Authorize(Policy = "admin.sizes.details")]
+        public async Task<IActionResult> Details(SizeSingleQuery query)
         {
-            if (id == null)
+            var response =await mediator.Send(query);
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var size = await db.Sizes
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (size == null)
-            {
-                return NotFound();
-            }
-
-            return View(size);
+            return View(response);
         }
 
-        // GET: Admin/Sizes/Create
+        [Authorize(Policy = "admin.sizes.create")]
         public IActionResult Create()
         {
             return View();
@@ -59,98 +58,53 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Abbr,Name,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Size size)
+        [Authorize(Policy = "admin.sizes.create")]
+        public async Task<IActionResult> Create(SizeCreateCommand command)
         {
-            if (ModelState.IsValid)
-            {
-                db.Add(size);
-                await db.SaveChangesAsync();
+            var response =await mediator.Send(command);
+            if(response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            return View(size);
+            
+            return View(command);
         }
 
-        // GET: Admin/Sizes/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        [Authorize(Policy = "admin.sizes.edit")]
+        public async Task<IActionResult> Edit(SizeSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var size = await db.Sizes.FindAsync(id);
-            if (size == null)
-            {
-                return NotFound();
-            }
-            return View(size);
+            var vm = new SizeModelView();
+            vm.Name = response.Name;
+            vm.Description = response.Description;
+            vm.Abbr = response.Abbr;
+            return View(vm);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Abbr,Name,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Size size)
+        [Authorize(Policy = "admin.sizes.edit")]
+        public async Task<IActionResult> Edit(SizeUpdateCommand command)
         {
-            if (id != size.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(size);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SizeExists(size.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            var response =await mediator.Send(command);
+            if(response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            return View(size);
+            
+            return View(command);
         }
 
-        // GET: Admin/Sizes/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+
+        [HttpPost]
+        [Authorize(Policy = "admin.sizes.delete")]
+        public async Task<IActionResult> Delete(SizeDeleteCommand command)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var size = await db.Sizes
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (size == null)
-            {
-                return NotFound();
-            }
-
-            return View(size);
+            var response = await mediator.Send(command);
+            return Json(response);
         }
 
-        // POST: Admin/Sizes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            var size = await db.Sizes.FindAsync(id);
-            db.Sizes.Remove(size);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool SizeExists(long id)
-        {
-            return db.Sizes.Any(e => e.Id == id  && e.DeletedByUserId == null);
-        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +24,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.configuration = configuration;
         }
 
-
+        [Authorize(Policy = "admin.contactposts.index")]
         public async Task<IActionResult> Index(long typeId)
         {
             var query = db.ContactPosts.AsQueryable()
@@ -54,7 +55,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(await query.ToListAsync());
         }
 
-
+        [Authorize(Policy = "admin.contactposts.details")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -75,6 +76,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "admin.contactposts.answer")]
         public async Task<IActionResult> Answer([Bind("Id,Answer")] ContactPost model)
         {
             if (model == null)
@@ -111,9 +113,10 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             db.Database.CommitTransaction();
 
             return Redirect(nameof(Index));
-        } 
+        }
 
 
+        [Authorize(Policy = "admin.contactposts.marked")]
         public async Task<IActionResult> Marked(long? id)
         {
             if (id == null)

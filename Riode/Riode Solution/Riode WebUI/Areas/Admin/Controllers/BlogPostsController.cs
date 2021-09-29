@@ -3,64 +3,60 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.BlogPostsModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class BlogPostsController : Controller
     {
         readonly RiodeDbContext db;
         readonly IWebHostEnvironment env;
+        readonly IMediator mediator;
 
-        public BlogPostsController(RiodeDbContext db,IWebHostEnvironment env)
+        public BlogPostsController(RiodeDbContext db,IWebHostEnvironment env, IMediator mediator)
         {
+            this.mediator = mediator;
             this.db = db;
             this.env = env;
         }
 
-        // GET: Admin/BlogPosts
-        public async Task<IActionResult> Index(int page=1)
+        [Authorize(Policy = "admin.blogpost.index")]
+        public async Task<IActionResult> Index(BlogPostPagedQuery query)
         {
-            int take = 5;
+            var response = await mediator.Send(query);
 
-            ViewBag.PageCount = Decimal.Ceiling((decimal)db.BlogPosts.Where(b => b.DeletedByUserId == null).Count() / take);
-            var riodeDbContext = db.BlogPosts.Where(b=>b.DeletedByUserId == null)
-                                            .Include(b => b.Category)
-                                            .OrderByDescending(b=>b.Id)
-                                            .Skip((page-1)*take)
-                                            .Take(take);
-            return View(await riodeDbContext.ToListAsync());
+            return View(response);
         }
 
 
 
-        // GET: Admin/BlogPosts/Details/5
-        public async Task<IActionResult> Details(long? id)
+        [Authorize(Policy = "admin.blogpost.details")]
+        public async Task<IActionResult> Details(BlogPostSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var blogPost = await db.BlogPosts
-                .Include(b => b.Category)
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (blogPost == null)
-            {
-                return NotFound();
-            }
-
-            return View(blogPost);
+            ViewData["CategorytId"] = db.Categories.Select(s => s.Id == response.CategoryId);
+            //ViewData["CategorytId"] = new SelectList(db.Categories, "Id", "Name");
+            return View(response);
         }
 
-        // GET: Admin/BlogPosts/Create
+        [Authorize(Policy = "admin.blogpost.create")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name");
@@ -70,60 +66,69 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(BlogPost blogPost, IFormFile file)
+        [Authorize(Policy = "admin.blogpost.create")]
+        public async Task<IActionResult> Create(BlogPostCreateCommand command)
         {
+            var response = await mediator.Send(command);
 
-            if (file == null)
-            {
+            if (response == -1)
                 ModelState.AddModelError("file", "There is not image");
-            }
 
-            if (ModelState.IsValid)
-            {
-                string extension = Path.GetExtension(file.FileName);
-                blogPost.ImageUrl = $"{Guid.NewGuid()}{extension}";
-
-                string physicalFileName = Path.Combine(env.ContentRootPath,
-                                                       "wwwroot",
-                                                       "uploads",
-                                                       "images",
-                                                       "blog",
-                                                       "mask",
-                                                       blogPost.ImageUrl);
-
-                using (var stream=new FileStream(physicalFileName, FileMode.Create,FileAccess.Write))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                db.Add(blogPost);
-                await db.SaveChangesAsync();
+            if (response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", blogPost.CategoryId);
-            return View(blogPost);
+
+            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", command.CategoryId);
+            return View(command);
+            //if (file == null)
+            //{
+            //    ModelState.AddModelError("file", "There is not image");
+            //}
+
+            //if (ModelState.IsValid)
+            //{
+            //    string extension = Path.GetExtension(file.FileName);
+            //    blogPost.ImageUrl = $"{Guid.NewGuid()}{extension}";
+
+            //    string physicalFileName = Path.Combine(env.ContentRootPath,
+            //                                           "wwwroot",
+            //                                           "uploads",
+            //                                           "images",
+            //                                           "blog",
+            //                                           "mask",
+            //                                           blogPost.ImageUrl);
+
+            //    using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+            //    {
+            //        await file.CopyToAsync(stream);
+            //    }
+
+            //    db.Add(blogPost);
+            //    await db.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", blogPost.CategoryId);
+            //return View(blogPost);
         }
 
-        // GET: Admin/BlogPosts/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        [Authorize(Policy = "admin.blogpost.edit")]
+        public async Task<IActionResult> Edit(BlogPostSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var blogPost = await db.BlogPosts.FindAsync(id);
-            if (blogPost == null)
-            {
-                return NotFound();
-            }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", blogPost.CategoryId);
-            return View(blogPost);
+            
+            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", response.CategoryId);
+            return View(response);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.blogpost.edit")]
         public async Task<IActionResult> Edit(long id, BlogPost blogPost, IFormFile file, string fileTemp)
         {
             if (id != blogPost.Id)
@@ -153,7 +158,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
                     entity.Title = blogPost.Title;
                     entity.Content = blogPost.Content;
-
+                    entity.CategoryId = blogPost.CategoryId;
 
                     if (file != null)
                     {
@@ -208,34 +213,13 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(blogPost);
         }
 
-        // GET: Admin/BlogPosts/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        
+        [HttpPost]
+        [Authorize(Policy = "admin.blogpost.delete")]
+        public async Task<IActionResult> Delete(BlogPostDeleteCommand command)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var blogPost = await db.BlogPosts
-                .Include(b => b.Category)
-                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedByUserId == null);
-            if (blogPost == null)
-            {
-                return NotFound();
-            }
-
-            return View(blogPost);
-        }
-
-        // POST: Admin/BlogPosts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            var blogPost = await db.BlogPosts.FindAsync(id);
-            db.BlogPosts.Remove(blogPost);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var result = await mediator.Send(command);
+            return Json(result);
         }
 
         private bool BlogPostExists(long id)

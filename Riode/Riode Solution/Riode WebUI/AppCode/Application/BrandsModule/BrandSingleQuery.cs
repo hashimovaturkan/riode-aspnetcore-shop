@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Riode_WebUI.AppCode.Application.BrandsModule
 {
-    public class BrandSingleQuery: IRequest<Brand>
+    public class BrandSingleQuery : IRequest<Brand>
     {
         public long? Id { get; set; }
 

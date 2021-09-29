@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Riode_WebUI.Controllers
 {
+    [AllowAnonymous]
     public class ShopController : Controller
     {
         readonly RiodeDbContext db;
@@ -18,6 +20,8 @@ namespace Riode_WebUI.Controllers
         {
             this.db = db;
         }
+
+        [Authorize(Policy = "ui.shop.index")]
         public IActionResult Index()
         {
             var viewModel = new CategoryViewModel(); 
@@ -50,6 +54,7 @@ namespace Riode_WebUI.Controllers
         [HttpPost]
         //json formatda
         //public IActionResult Filter([FromBody]ShopFilterFormModel model)
+        [Authorize(Policy = "ui.shop.filter")]
         public IActionResult Filter(ShopFilterFormModel model)
         {
             var query = db.Products
@@ -83,6 +88,8 @@ namespace Riode_WebUI.Controllers
             //    data = query.ToList()
             //});
         }
+
+        [Authorize(Policy = "ui.shop.details")]
         public IActionResult Details(long id)
         {
             var data = db.Products

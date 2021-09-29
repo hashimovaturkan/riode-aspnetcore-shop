@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.ViewModels;
@@ -16,6 +17,8 @@ namespace Riode_WebUI.Controllers
         {
             this.db = db;
         }
+
+        [Authorize(Policy = "ui.blog.details")]
         public IActionResult Details(long id)
         {
             var datas =new CategoryBlogPostViewModel();
@@ -39,6 +42,7 @@ namespace Riode_WebUI.Controllers
             return View(datas);
         }
 
+        [Authorize(Policy = "ui.blog.index")]
         public IActionResult Index()
         {
             var datas = db.BlogPosts

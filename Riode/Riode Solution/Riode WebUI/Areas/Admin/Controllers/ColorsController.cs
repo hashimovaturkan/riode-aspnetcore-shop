@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Riode_WebUI.AppCode.Application.ColorsModule;
 using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities;
-using Riode_WebUI.Models.ViewModels;
+using System.Threading.Tasks;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
@@ -25,7 +19,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        // GET: Admin/Colors
+        [Authorize(Policy ="admin.colors.index")]
         public async Task<IActionResult> Index(ColorPagedQuery query)
         {
             var response = await mediator.Send(query);
@@ -35,7 +29,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        // GET: Admin/Colors/Details/5
+        [Authorize(Policy ="admin.colors.details")]
         public async Task<IActionResult> Details(ColorSingleQuery query)
         {
             var response =await mediator.Send(query);
@@ -47,7 +41,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        // GET: Admin/Colors/Create
+        [Authorize(Policy = "admin.colors.create")]
         public IActionResult Create()
         {
             return View();
@@ -56,16 +50,17 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.colors.create")]
         public async Task<IActionResult> Create(ColorCreateCommand command)
         {
             var response = await mediator.Send(command);
             if(response > 0)
                 return RedirectToAction(nameof(Index));
             
-            return View(response);
+            return View(command);
         }
 
-        // GET: Admin/Colors/Edit/5
+        [Authorize(Policy = "admin.colors.edit")]
         public async Task<IActionResult> Edit(ColorSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -83,6 +78,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.colors.edit")]
         public async Task<IActionResult> Edit(ColorUpdateCommand command)
         {
             var response =await mediator.Send(command);
@@ -92,11 +88,12 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
                
-            return View(response);
+            return View(command);
         }
 
         
         [HttpPost]
+        [Authorize(Policy = "admin.colors.delete")]
         public async Task<IActionResult> Delete(ColorDeleteCommand command)
         {
             var response = await mediator.Send(command);

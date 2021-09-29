@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Riode_WebUI.AppCode.Extensions;
 using Riode_WebUI.Models.DataContexts;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Riode_WebUI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         readonly RiodeDbContext db;
@@ -33,11 +35,14 @@ namespace Riode_WebUI.Controllers
             //string myPlainText = chiperText.Decrypt(myKey);
 
         }
+
+        //[Authorize(Policy = "ui.home.index")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Policy = "ui.home.contact")]
         public IActionResult Contact()
         {
             return View();
@@ -45,6 +50,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "ui.home.contact")]
         public IActionResult Contact(ContactPost model)
         {
             if (ModelState.IsValid)
@@ -67,12 +73,13 @@ namespace Riode_WebUI.Controllers
             });
         }
 
+        [Authorize(Policy = "ui.home.about")]
         public IActionResult About()
         {
             return View();
         }
 
-
+        [Authorize(Policy = "ui.home.faq")]
         public IActionResult FAQ()
         {
             var datas = db.Faqs
@@ -83,6 +90,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "ui.home.email")]
         public IActionResult Subscribe([Bind("Email")]Subscribe model)
         {
             if (ModelState.IsValid)
@@ -142,6 +150,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpGet]
         [Route("subscribe-confirm")]
+        [Authorize(Policy = "ui.home.subscribeconfirm")]
         public IActionResult SubscribeConfirm(string token)
         {
             token = token.Decrypt();

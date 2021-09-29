@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +15,7 @@ using Riode_WebUI.Models.FormModels;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class ProductsController : Controller
     {
         private readonly RiodeDbContext db;
@@ -25,7 +27,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.env = env;
         }
 
-        // GET: Admin/Products
+        [Authorize(Policy = "admin.products.index")]
         public async Task<IActionResult> Index()
         {
             var riodeDbContext = db.Products
@@ -37,7 +39,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(await riodeDbContext.ToListAsync());
         }
 
-        // GET: Admin/Products/Details/5
+        [Authorize(Policy = "admin.products.details")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -60,7 +62,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Admin/Products/Create
+        [Authorize(Policy = "admin.products.create")]
         public IActionResult Create()
         {
 
@@ -72,6 +74,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.products.create")]
         public async Task<IActionResult> Create(Product product, ImageItemFormModel[] images)
         {
             if(images == null || !images.Any(i=>i.File != null))
@@ -113,7 +116,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Admin/Products/Edit/5
+        [Authorize(Policy = "admin.products.edit")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -135,6 +138,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.products.edit")]
         public async Task<IActionResult> Edit(long id, Product product)
         {
             if (id != product.Id)
@@ -217,7 +221,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Admin/Products/Delete/5
+        [Authorize(Policy = "admin.products.delete")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -237,9 +241,10 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(product);
         }
 
-        // POST: Admin/Products/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.products.delete")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var product = await db.Products.FindAsync(id);

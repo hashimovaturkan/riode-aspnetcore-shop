@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using Riode_WebUI.Models.Entities;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class BrandsController : Controller
     {
         readonly IMediator mediator;
@@ -21,7 +23,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        // GET: Admin/Brands
+        [Authorize(Policy = "admin.brands.index")]
         public async Task<IActionResult> Index(BrandPagedQuery query)
         {
             var response =await mediator.Send(query);
@@ -29,7 +31,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        // GET: Admin/Brands/Details/5
+        [Authorize(Policy = "admin.brands.details")]
         public async Task<IActionResult> Details(BrandSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -42,7 +44,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(response);
         }
 
-        // GET: Admin/Brands/Create
+        [Authorize(Policy = "admin.brands.create")]
         public IActionResult Create()
         {
             return View();
@@ -51,6 +53,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.brands.create")]
         public async Task<IActionResult> Create(BrandCreateCommand command)
         {
             var id = await mediator.Send(command);
@@ -61,7 +64,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(command);
         }
 
-        // GET: Admin/Brands/Edit/5
+        [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit(BrandSingleQuery query)
         {
             var response = await mediator.Send(query);
@@ -83,6 +86,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit(BrandUpdateCommand command)
         {
             var response =await mediator.Send(command);
@@ -95,6 +99,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = "admin.brands.delete")]
         public async Task<IActionResult> Delete(BrandDeleteCommand command)
         {
 

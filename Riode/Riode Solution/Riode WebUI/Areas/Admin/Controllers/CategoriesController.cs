@@ -2,168 +2,119 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.CategoriesModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class CategoriesController : Controller
     {
         private readonly RiodeDbContext db;
+        readonly IMediator mediator;
 
-        public CategoriesController(RiodeDbContext db)
+        public CategoriesController(RiodeDbContext db,IMediator mediator)
         {
+            this.mediator = mediator;
             this.db = db;
         }
 
-        // GET: Admin/Categories
-        public async Task<IActionResult> Index(int page = 1)
+        [Authorize(Policy = "admin.categories.index")]
+        public async Task<IActionResult> Index(CategoryPagedQuery query)
         {
-            int take = 5;
+            var response = await mediator.Send(query);
 
-            ViewBag.PageCount = Decimal.Ceiling((decimal)db.Categories.Where(b => b.DeletedByUserId == null).Count() / take);
-
-            var riodeDbContext = db.Categories
-                .Include(c => c.Parent)
-                .Include(c => c.Children)
-                .ThenInclude(c => c.Children)
-                .Where(c => c.ParentId == null && c.DeletedByUserId == null)
-                .Skip((page - 1) * take)
-                .Take(take);
-
-            return View(await riodeDbContext.ToListAsync());
+            return View(response);
         }
 
-        // GET: Admin/Categories/Details/5
-        public async Task<IActionResult> Details(long? id)
+        [Authorize(Policy = "admin.categories.details")]
+        public async Task<IActionResult> Details(CategorySingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var category = await db.Categories
-                .Include(c => c.Parent)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
+            ViewData["ParentId"] = db.Categories.Select(s=>s.Id == response.ParentId);
+            //ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Name");
+            return View(response);
         }
 
-        // GET: Admin/Categories/Create
+        [Authorize(Policy = "admin.categories.create")]
         public IActionResult Create()
         {
-            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Id");
+            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,ParentId,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Category category)
+        [Authorize(Policy = "admin.categories.create")]
+        public async Task<IActionResult> Create(CategoryCreateCommand command)
         {
-            if (ModelState.IsValid)
+            var response = await mediator.Send(command);
+            if (response > 0)
             {
-                db.Add(category);
-                await db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Id", category.ParentId);
-            return View(category);
+
+            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Name", command.ParentId);
+            return View(command);
         }
 
-        // GET: Admin/Categories/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        [Authorize(Policy = "admin.categories.edit")]
+        public async Task<IActionResult> Edit(CategorySingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var category = await db.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Id", category.ParentId);
-            return View(category);
+            var vm = new CategoryViewModel();
+            vm.Name = response.Name;
+            vm.Description = response.Description;
+            vm.ParentId = response.ParentId;
+            
+            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Name", response.ParentId);
+            return View(vm);
         }
 
-        // POST: Admin/Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Name,ParentId,Description,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Category category)
+        [Authorize(Policy = "admin.categories.edit")]
+        public async Task<IActionResult> Edit(CategoryUpdateCommand command)
         {
-            if (id != category.Id)
-            {
-                return NotFound();
-            }
+            var response = await mediator.Send(command);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(category);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CategoryExists(category.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            if (response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Id", category.ParentId);
-            return View(category);
+
+            
+            ViewData["ParentId"] = new SelectList(db.Categories, "Id", "Name", command.ParentId);
+            return View(command);
         }
 
-        // GET: Admin/Categories/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+
+        
+        [HttpPost]
+        [Authorize(Policy = "admin.categories.delete")]
+        public async Task<IActionResult> Delete(CategoryDeleteCommand command)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await db.Categories
-                .Include(c => c.Parent)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
+            var result = await mediator.Send(command);
+            return Json(result);
         }
 
-        // POST: Admin/Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            var category = await db.Categories.FindAsync(id);
-            db.Categories.Remove(category);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CategoryExists(long id)
-        {
-            return db.Categories.Any(e => e.Id == id);
-        }
     }
 }

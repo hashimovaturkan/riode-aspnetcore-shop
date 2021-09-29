@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Parent Id</th>
-                    <td>@Model.ParentId</td>
+                    <td>@ViewData["ParentId"]</td>
                 </tr>
                 <tr>
                     <th scope="row">Description</th>
@@ -32,10 +32,6 @@
                 <tr>
                     <th scope="row">User Id (Delete)</th>
                     <td>@Model.CreatedDate</td>
-                </tr>
-                <tr>
-                    <th scope="row">Deleted Date</th>
-                    <td>@Model.DeletedDate</td>
                 </tr>
             </tbody>
         </table>

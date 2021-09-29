@@ -64,11 +64,11 @@
                         <span class="divider"></span>
                         <a asp-controller="home" asp-action="contact" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
                         <a href="#" class="help d-lg-show"><i class="d-icon-info"></i> Need Help</a>
-                        <a class="login-link" href="ajax/login.html" data-toggle="login-modal">
+                        <a  asp-controller="Account" asp-action="SignIn" asp-area="" data-toggle="login-modal">
                             <i class="d-icon-user"></i>Sign in
                         </a>
                         <span class="delimiter">/</span>
-                        <a class="register-link ml-0" href="ajax/login.html" data-toggle="login-modal">Register</a>
+                        <a class="register-link ml-0" asp-controller="account" asp-action="register"  data-toggle="login-modal">Register</a>
                         <!-- End of Login -->
                     </div>
                 </div>

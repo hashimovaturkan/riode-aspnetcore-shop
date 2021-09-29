@@ -40,8 +40,15 @@ using Resources;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\Views\_ViewImports.cshtml"
+using Riode_WebUI.Models.FormModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9e666a914997091f4a5383cd2d4148e9711d337", @"/Views/Order/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e4f4af6455d2873d54d65a84350efc54b3deae2f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f4a20e49e3ac0973d957196a59aea09d5bdb274a", @"/Views/_ViewImports.cshtml")]
     public class Views_Order_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "order", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -84,7 +91,7 @@ using Resources;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"page-content pt-7 pb-10 mb-10\">\r\n    <div class=\"step-by pr-4 pl-4\">\r\n        <h3 class=\"title title-simple title-step\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d3375862", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d3376079", async() => {
                 WriteLiteral("1. Shopping Cart");
             }
             );
@@ -102,7 +109,7 @@ using Resources;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</h3>\r\n        <h3 class=\"title title-simple title-step\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d3377290", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d3377507", async() => {
                 WriteLiteral("2. Checkout");
             }
             );
@@ -120,7 +127,7 @@ using Resources;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("</h3>\r\n        <h3 class=\"title title-simple title-step active\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d3378720", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d3378937", async() => {
                 WriteLiteral("3. Order Complete");
             }
             );
@@ -273,7 +280,7 @@ using Resources;
         </div>
 
         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d33715992", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9e666a914997091f4a5383cd2d4148e9711d33716209", async() => {
                 WriteLiteral("<i class=\"d-icon-arrow-left\"></i> Back to List");
             }
             );

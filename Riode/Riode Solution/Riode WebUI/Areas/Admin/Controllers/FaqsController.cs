@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +21,13 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.db = db;
         }
 
-        // GET: Admin/Faqs
+        [Authorize(Policy = "admin.faqs.index")]
         public async Task<IActionResult> Index()
         {
             return View(await db.Faqs.ToListAsync());
         }
 
-        // GET: Admin/Faqs/Details/5
+        [Authorize(Policy = "admin.faqs.details")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -44,7 +45,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(faq);
         }
 
-        // GET: Admin/Faqs/Create
+        [Authorize(Policy = "admin.faqs.create")]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.faqs.create")]
         public async Task<IActionResult> Create([Bind("Question,Answer,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Faq faq)
         {
             if (ModelState.IsValid)
@@ -66,7 +68,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(faq);
         }
 
-        // GET: Admin/Faqs/Edit/5
+        [Authorize(Policy = "admin.faqs.edit")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -82,11 +84,10 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(faq);
         }
 
-        // POST: Admin/Faqs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.faqs.edit")]
         public async Task<IActionResult> Edit(long id, [Bind("Question,Answer,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Faq faq)
         {
             if (id != faq.Id)
@@ -117,7 +118,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View(faq);
         }
 
-        // GET: Admin/Faqs/Delete/5
+        [Authorize(Policy = "admin.faqs.delete")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -138,6 +139,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         // POST: Admin/Faqs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "admin.faqs.delete")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var faq = await db.Faqs.FindAsync(id);
