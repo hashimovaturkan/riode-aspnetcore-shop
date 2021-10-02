@@ -1,4 +1,4 @@
-﻿@model BlogPost
+﻿@model BlogPostViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,36 +14,36 @@
                 <form asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group ">
-                        <label asp-for="Title" class="control-label"></label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <label asp-for="BlogPost.Title" class="control-label"></label>
+                        <input asp-for="BlogPost.Title" class="form-control" />
+                        <span asp-validation-for="BlogPost.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group ">
                         <label class="control-label">
                             Image
                         </label>
-                        <label for="file" class="image-input" data-imgurl="/uploads/images/blog/mask/@Model.ImageUrl">
-                            <input name="fileTemp" value="@Model.ImageUrl" type="hidden" />
+                        <label for="file" class="image-input" data-imgurl="/uploads/images/blog/mask/@Model.BlogPost.ImageUrl">
+                            <input name="fileTemp" value="@Model.BlogPost.ImageUrl" type="hidden" />
                             <span>x</span>
                         </label>
                         <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
                     </div>
                     <div class="form-group ">
-                        <label asp-for="Content" class="control-label"></label>
-                        <textarea asp-for="Content" class="form-control"></textarea>
-                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <label asp-for="BlogPost.Content" class="control-label"></label>
+                        <textarea asp-for="BlogPost.Content" class="form-control"></textarea>
+                        <span asp-validation-for="BlogPost.Content" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="CategoryId" class="control-label"></label>
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <label asp-for="BlogPost.CategoryId" class="control-label"></label>
+                        <select asp-for="BlogPost.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="BlogPost.CategoryId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="PublishedDate" class="control-label"></label>
-                        <input asp-for="PublishedDate" class="form-control" />
-                        <span asp-validation-for="PublishedDate" class="text-danger"></span>
+                        <label asp-for="BlogPost.PublishedDate" class="control-label"></label>
+                        <input asp-for="BlogPost.PublishedDate" class="form-control" />
+                        <span asp-validation-for="BlogPost.PublishedDate" class="text-danger"></span>
                     </div>
-                    @*<input type="hidden" asp-for="Id" />*@
+                    <input type="hidden" asp-for="BlogPost.Id" />
                     @*<div class="form-group">
             <label asp-for="CategoryId" class="control-label"></label>
             <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
@@ -90,7 +90,7 @@
     <script>
         $(document).ready(function () {
             ClassicEditor
-                .create(document.querySelector('#Content'))
+                .create(document.querySelector('#BlogPost_Content'))
                 .catch(error => {
                     console.error(error);
                 });

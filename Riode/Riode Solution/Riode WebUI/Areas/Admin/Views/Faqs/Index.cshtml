@@ -1,71 +1,60 @@
-﻿@model IEnumerable<Riode_WebUI.Models.Entities.Faq>
+﻿@model PagedViewModel<Faq>
 
 @{
     ViewData["Title"] = "Index";
 }
 
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Product <b>Brands</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a asp-action="Create" asp-controller="Faqs" class="btn btn-success"><i class="fa fa-plus "></i> <span>Add New Brand</span></a>
+                        <a asp-action="Delete" asp-controller="Faqs" class="btn btn-danger"><i class="fa fa-trash"></i> <span>Delete</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>Question</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="check-content">
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox-@item.Id" name="options[]" value="1">
+                                    <label for="checkbox-@item.Id"></label>
+                                </span>
+                            </td>
+                            <td>@item.Question</td>
+                            <td class="crud-btn">
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Faqs" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+                                <a onclick="removeEntity(@item.Id)" class="delete"><i class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Faqs" class="view"><i class="fa fa-eye" data-toggle="tooltip" title="Details"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
 
-
-
-
-
-
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Question)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Answer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedByUserId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DeletedByUserId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DeletedDate)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Question)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Answer)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedByUserId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DeletedByUserId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DeletedDate)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        </div>
+        <div class="pagination-wrapper">
+            @Model.GetPagenation(Url, "Index", "Admin")
+        </div>
+    </div>
+</div>

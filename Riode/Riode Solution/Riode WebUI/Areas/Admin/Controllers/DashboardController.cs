@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[AllowAnonymous]     bu authorize dan daha basqindi
+    //[AllowAnonymous]    // bu authorize dan daha basqindi
     public class DashboardController : Controller
     {
         [Authorize(Policy = "admin.dashboard.index")]

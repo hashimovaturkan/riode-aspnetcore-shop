@@ -27,7 +27,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="signin">
-                            <form method="post">
+                            <form method="post" asp-action="SignIn" asp-controller="Account">
                                 <label class="text-danger">@ViewBag.Message</label>
                                 <div class="form-group mb-3">
                                     <input type="text" class="form-control" asp-for="UserName" placeholder="Username or Email Address *" required />
@@ -61,24 +61,25 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="register">
-                            <form action="#">
+                            <form method="post" asp-controller="account" asp-action="register" id="register-frm">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="register-username" name="register-username" placeholder="Your Username *"
-                                           required />
+                                    <input class="form-control" id="register-username" name="Username" placeholder="Your Username *"
+                                           data-rule-required="true" data-msg-required="Please, enter your username" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="register-email" name="register-email" placeholder="Your Email address *"
-                                           required />
+                                    <input class="form-control" id="register-email" name="Email" placeholder="Your Email address *"
+                                           data-rule-required="true" data-msg-required="Please, enter your email"
+                                           data-rule-email="true" data-msg-email="Invalid email address" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Password *"
-                                           required />
+                                    <input type="password" class="form-control" id="register-password" name="Password" placeholder="Password *"
+                                           data-rule-required="true" data-msg-required="Please, enter your password" />
                                 </div>
                                 <div class="form-footer">
                                     <div class="form-checkbox">
-                                        <input type="checkbox" class="custom-checkbox" id="register-agree" name="register-agree"
-                                               required />
-                                        <label class="form-control-label" for="register-agree">
+                                        <input type="checkbox" class="custom-checkbox" id="register-agree" name="AgreePolicy"
+                                               data-rule-required="true" />
+                                        <label class="form-control-label" for="register-agree" id="agree-policy">
                                             I agree to the
                                             privacy policy
                                         </label>
@@ -109,5 +110,70 @@
             $("#Password").val("123");
             $("#UserName").val("Turkan");
         });
+
     </script>
 </environment>
+
+@section addjs{
+    <script>
+        $(document).ready(function () {
+            $("#register-frm").submit(function (e) {
+                e.preventDefault();
+
+                if (!$(e.currentTarget).valid())
+                    return;
+
+                var frm = new FormData(e.currentTarget);
+
+                $.ajax({
+                    url: '@Url.Action("Register", "Account")',
+                    type: "Post",
+                    data: frm,
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    beforeSend: function (response) {
+                        console.log("before sending")
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            toastr.success(response.message, "Successfully!")
+                            e.currentTarget.reset();
+                        }
+                        else {
+                            toastr.error(response.message, "Error!")
+                        }
+
+                    },
+                    error: function (response) {
+                        toastr.error("Please, try again...", "Error!")
+                    }
+
+                }).always(function () {
+                    console.log("after sending")
+                });
+
+
+            }).validate({
+                errorClass: "invalid",
+                validClass: "valid"
+            });
+        })
+    </script>
+}
+
+@section addcss{
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+    <style>
+        .invalid + label{
+            font-size: 12px !important;
+            color: red;
+        }
+        #register-agree +.invalid{
+            display:none !important;
+        }
+        [aria-invalid="false"] + label + label {
+            color: #666 !important;
+        }
+    </style>
+}

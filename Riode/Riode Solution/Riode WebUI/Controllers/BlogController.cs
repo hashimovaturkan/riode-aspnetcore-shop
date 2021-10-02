@@ -18,7 +18,7 @@ namespace Riode_WebUI.Controllers
             this.db = db;
         }
 
-        [Authorize(Policy = "ui.blog.details")]
+        [Authorize(Policy = "blog.details")]
         public IActionResult Details(long id)
         {
             var datas =new CategoryBlogPostViewModel();
@@ -42,7 +42,7 @@ namespace Riode_WebUI.Controllers
             return View(datas);
         }
 
-        [Authorize(Policy = "ui.blog.index")]
+        [Authorize(Policy = "blog.index")]
         public IActionResult Index()
         {
             var datas = db.BlogPosts

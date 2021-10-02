@@ -21,7 +21,7 @@ namespace Riode_WebUI.Controllers
             this.db = db;
         }
 
-        [Authorize(Policy = "ui.shop.index")]
+        [Authorize(Policy = "shop.index")]
         public IActionResult Index()
         {
             var viewModel = new CategoryViewModel(); 
@@ -54,7 +54,7 @@ namespace Riode_WebUI.Controllers
         [HttpPost]
         //json formatda
         //public IActionResult Filter([FromBody]ShopFilterFormModel model)
-        [Authorize(Policy = "ui.shop.filter")]
+        [Authorize(Policy = "shop.index")]
         public IActionResult Filter(ShopFilterFormModel model)
         {
             var query = db.Products
@@ -89,7 +89,7 @@ namespace Riode_WebUI.Controllers
             //});
         }
 
-        [Authorize(Policy = "ui.shop.details")]
+        [Authorize(Policy = "shop.details")]
         public IActionResult Details(long id)
         {
             var data = db.Products

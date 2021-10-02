@@ -29,14 +29,14 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.db = db;
         }
 
-        //[Authorize(Policy = "admin.account.login")]
+        [Authorize(Policy = "admin.account.login")]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.account.login")]
+        [Authorize(Policy = "admin.account.login")]
         public async Task<IActionResult> Login(LoginFormModel user)
         {
             if (ModelState.IsValid)
@@ -85,14 +85,14 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        //[Authorize(Policy = "admin.account.register")]
+        [Authorize(Policy = "admin.account.register")]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        //[Authorize(Policy = "admin.account.register")]
+        [Authorize(Policy = "admin.account.register")]
         public IActionResult Register(LoginFormModel user)
         {
             return View();

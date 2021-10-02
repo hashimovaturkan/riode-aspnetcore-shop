@@ -1,4 +1,5 @@
-using MediatR;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,20 +23,55 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
+/*
+ * 1.  Sistem konfiqurasiyalarının istifadəsi
+ * 1.1 Konfiqurasiların inject edilməsi - appsetting.json
+ * 1.2 Konfiqurasiyaların Startup class-ı daxilində qloballaşdırılması
+ * 
+ * 2.  Database-nın konfiqurasiyası
+ * 2.1 Database contextin servise scope-da registrasiyası
+ * 2.2 İstifadə edilən Database-nın database contextə mənimsədilməsi/set edilməsi
+ * 2.3 İnMemory database-nin database context-ə mənimsədilməsi
+ * 
+ * 3.  Mvc prinsiplərinin tətbiq edilməsi
+ * 3.1 Mvc prinsiplərinin controller-view əsaslı işinin realizasiyası 
+ * 3.2 Mvc routing prinsiplərinin realizasiyası
+ * 
+ * 4.  .Net identity prinsiplərinin realizasiyası
+ * 4.1 User və rolların identity servisə registrasiyası
+ * 4.2 SignİnManager servisinin service scope-a registrasiyası
+ * 4.3 UserManager servisinin service scope-a registrasiyası
+ * 4.4 UserManager servisinin service scopa-a registrasiyası
+ * 
+ * 5.  SignalR-in realizasiyası
+ * 5.1 SignalR servisinin pipeline-ə əlavə edilməsi
+ * 5.2 SignalR Hub-ın pipeline-ə əlavə edilməsi
+ * 
+ * 6.  MultiLanguage- Çoxdilli versiyanın realizasiyası
+ * 6.1 MultiLanguage Providerin pipeline-ə əlavə edilməsi
+ * 
+ * 7.  Statik faylların istifadəsinə icazə verilməsi
+ * 
+ * 8.  Custom Binder Provider
+ * 8.1 BooleanType CustomBinderProvider-i pipeline-yə qoşmaq
+ * 8.2 Dateİnterval CustomBinderProvider-i pipeline-yə qoşmaq
+ */
+
 namespace Riode_WebUI
 {
     public class Startup
     {
-        readonly IConfiguration configuration;
-        public Startup(IConfiguration configuration)
+        readonly IConfiguration configuration; //1.2
+        public Startup(IConfiguration configuration) //1.1
         {
-            this.configuration = configuration;
+            this.configuration = configuration;  //1.2
         }
         
         public void ConfigureServices(IServiceCollection services)
         {
+            //3.1
             services.AddControllersWithViews(cfg=> {
-                cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
+                cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());  //8.1
 
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
@@ -50,8 +86,9 @@ namespace Riode_WebUI
 
             //bu dependency injectiondi ici ise sql'in adini basqasi rahat deyissin dyedi
             //db context ucun inject standarti var
+            //2.1
             services.AddDbContext<RiodeDbContext>(cfg=> {
-                cfg.UseSqlServer(configuration.GetConnectionString("cString"));
+                cfg.UseSqlServer(configuration.GetConnectionString("cString"));  //2.2
             }, ServiceLifetime.Scoped);
 
             //service injection etmek ucun
@@ -61,14 +98,19 @@ namespace Riode_WebUI
             //butun urller kicik herfli olsun
             services.AddRouting(cfg => cfg.LowercaseUrls = true);
 
+            //IActionContextAccessor'u cagiranda ActionContextAccessor'u singleton seklinde versin
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
+            //4.1
             services.AddIdentity<RiodeUser, RiodeRole>()
-                .AddEntityFrameworkStores<RiodeDbContext>();
+                .AddEntityFrameworkStores<RiodeDbContext>()
+                .AddDefaultTokenProviders();
 
-            services.AddScoped<UserManager<RiodeUser>>();
-            services.AddScoped<RoleManager<RiodeRole>>();
-            services.AddScoped<SignInManager<RiodeUser>>();
+            services.AddScoped<UserManager<RiodeUser>>(); //4.2
+            services.AddScoped<RoleManager<RiodeRole>>();  //4.3
+            services.AddScoped<SignInManager<RiodeUser>>();  //4.4
+            //realtimeda deyisiklikler tetbiq olunsun
+            services.AddScoped<IClaimsTransformation, AppClaimProvider>();
 
             services.Configure<IdentityOptions>(cfg =>
             {
@@ -83,6 +125,8 @@ namespace Riode_WebUI
 
                 cfg.Lockout.MaxFailedAccessAttempts = 3;
                 cfg.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0,3,0);
+
+                cfg.SignIn.RequireConfirmedEmail = true;
             });
 
             services.ConfigureApplicationCookie(cfg =>
@@ -99,13 +143,19 @@ namespace Riode_WebUI
             //senin hara girmeye selahiyyetin var
             services.AddAuthorization(cfg =>
             {
-                cfg.AddPolicy("admin.colors.index", p =>
+                foreach (var item in Program.principals)
                 {
-                    p.RequireAssertion(h =>
+                    cfg.AddPolicy(item, p =>
                     {
-                        return h.User.HasClaim(c => c.Type.Equals("admin.colors.index") && c.Value.Equals("1"));
+                        p.RequireAssertion(h =>
+                        {
+                            return h.User.IsInRole("SuperAdmin") ||
+                            h.User.HasClaim(item,"1") ;
+                            //burda nie h.Role.HasClaim elemedikki tekce userde yoxluyurug
+                        });
                     });
-                });
+                }
+                
             });
 
 
@@ -126,6 +176,7 @@ namespace Riode_WebUI
             //sadece rootun icindekilerin gorunmesine icaze verir
             app.UseStaticFiles();
 
+            //program ilk ayaga qalxabda superadmini falan yaratsin 
             app.SeedMembership();
 
             app.UseRouting();
@@ -141,7 +192,7 @@ namespace Riode_WebUI
 
 
 
-            //eger adminden giririkse allow olmayan bi yere admin  signinne gelmesi ucun
+            //eger adminden giririkse allow olmayan bi yere admin signinne gelmesi ucun
             app.Use(async (context, next) =>
             {
                 if (!context.User.Identity.IsAuthenticated
@@ -153,7 +204,6 @@ namespace Riode_WebUI
                     //eger actionin ustunde allowanonymous atributu varsa onda normal nexte dussun yoxdursa o zaman yonlensin signine 
                     if (attr == null)
                     {
-                        //context.Request.Path = "/admin/signin.html";
                         context.Response.Redirect("/admin/signin.html");
                         await context.Response.CompleteAsync();
                     }

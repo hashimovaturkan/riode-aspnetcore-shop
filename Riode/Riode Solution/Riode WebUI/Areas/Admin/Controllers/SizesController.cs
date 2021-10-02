@@ -78,6 +78,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             }
 
             var vm = new SizeModelView();
+            vm.Id= response.Id;
             vm.Name = response.Name;
             vm.Description = response.Description;
             vm.Abbr = response.Abbr;

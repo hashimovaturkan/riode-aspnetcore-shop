@@ -14,7 +14,7 @@ using Riode_WebUI.Models.Entities;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class BrandsController : Controller
     {
         readonly IMediator mediator;
@@ -77,9 +77,9 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             //SUAL: burda nie elave viewmodel yazadiriqki ondansa ele brand yazaqda viewda model kimi
             //onsuz heccur user nese eliye bilmez
             var vm = new BrandViewModel();
+            vm.Id = response.Id;
             vm.Name = response.Name;
             vm.Description = response.Description;
-            vm.Id = response.Id;
             return View(vm);
         }
 
@@ -89,6 +89,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         [Authorize(Policy = "admin.brands.edit")]
         public async Task<IActionResult> Edit(BrandUpdateCommand command)
         {
+            
             var response =await mediator.Send(command);
 
             if (response > 0)

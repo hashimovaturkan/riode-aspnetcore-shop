@@ -14,7 +14,7 @@ using Riode_WebUI.Models.Entities;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class CategoriesController : Controller
     {
         private readonly RiodeDbContext db;
@@ -82,6 +82,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             }
 
             var vm = new CategoryViewModel();
+            vm.Id = response.Id;
             vm.Name = response.Name;
             vm.Description = response.Description;
             vm.ParentId = response.ParentId;

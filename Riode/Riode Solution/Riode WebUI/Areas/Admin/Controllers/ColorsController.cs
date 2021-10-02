@@ -69,18 +69,23 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
             var vm =new ColorViewModel();
+            vm.Id = response.Id;
             vm.Name = response.Name;
             vm.Description = response.Description;
             vm.HexCode = response.HexCode;
             return View(vm);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.colors.edit")]
-        public async Task<IActionResult> Edit(ColorUpdateCommand command)
+        public async Task<IActionResult> Edit([FromRoute]long id, ColorUpdateCommand command)
         {
+            if (id != command.Id)
+            {
+                return NotFound();
+            }
             var response =await mediator.Send(command);
 
             if(response > 0)

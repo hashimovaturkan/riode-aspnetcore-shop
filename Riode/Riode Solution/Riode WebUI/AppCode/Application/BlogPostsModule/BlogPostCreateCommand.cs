@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Riode_WebUI.AppCode.Application.BlogPostsModule
 {
-    public class BlogPostCreateCommand : IRequest<long>
+    public class BlogPostCreateCommand : IRequest<BlogPost>
     {
         public string Title { get; set; }
         public string Content { get; set; }
@@ -24,7 +24,7 @@ namespace Riode_WebUI.AppCode.Application.BlogPostsModule
         public IFormFile file { get; set; }
         public long? CategoryId { get; set; }
 
-        public class BlogPostCreateCommandHandler : IRequestHandler<BlogPostCreateCommand, long>
+        public class BlogPostCreateCommandHandler : IRequestHandler<BlogPostCreateCommand, BlogPost>
         {
             readonly RiodeDbContext db;
             readonly IActionContextAccessor ctx;
@@ -35,11 +35,11 @@ namespace Riode_WebUI.AppCode.Application.BlogPostsModule
                 this.ctx = ctx;
                 this.db = db;
             }
-            public async Task<long> Handle(BlogPostCreateCommand request, CancellationToken cancellationToken)
+            public async Task<BlogPost> Handle(BlogPostCreateCommand request, CancellationToken cancellationToken)
             {
                 if (request.file == null)
                 {
-                    return -1;
+                    ctx.ActionContext.ModelState.AddModelError("file", "There is not image");
                 }
 
                 if (ctx.IsModelStateValid())
@@ -69,10 +69,10 @@ namespace Riode_WebUI.AppCode.Application.BlogPostsModule
                     db.Add(blog);
                     await db.SaveChangesAsync();
 
-                    return blog.Id;
+                    return blog;
                 }
 
-                return 0;
+                return null;
 
             }
         }

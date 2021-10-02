@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Category</th>
-                    <td>@ViewData["CategoryId"]</td>
+                    <td>@Model.Category?.Name</td>
                 </tr>
                 <tr>
                     <th>Created User</th>
@@ -49,14 +49,6 @@
                 <tr>
                     <th>Created Date</th>
                     <td>@Model.CreatedDate</td>
-                </tr>
-                <tr>
-                    <th>Deleted User</th>
-                    <td>@Model.DeletedByUserId</td>
-                </tr>
-                <tr>
-                    <th>Deleted Date</th>
-                    <td>@Model.DeletedDate</td>
                 </tr>
             </tbody>
         </table>

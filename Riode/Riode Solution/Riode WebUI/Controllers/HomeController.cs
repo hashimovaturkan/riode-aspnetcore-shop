@@ -36,13 +36,13 @@ namespace Riode_WebUI.Controllers
 
         }
 
-        //[Authorize(Policy = "ui.home.index")]
+        //[Authorize(Policy = "home.index")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Policy = "ui.home.contact")]
+        [Authorize(Policy = "home.contact")]
         public IActionResult Contact()
         {
             return View();
@@ -50,7 +50,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "ui.home.contact")]
+        [Authorize(Policy = "home.contact")]
         public IActionResult Contact(ContactPost model)
         {
             if (ModelState.IsValid)
@@ -73,13 +73,13 @@ namespace Riode_WebUI.Controllers
             });
         }
 
-        [Authorize(Policy = "ui.home.about")]
+        [Authorize(Policy = "home.about")]
         public IActionResult About()
         {
             return View();
         }
 
-        [Authorize(Policy = "ui.home.faq")]
+        [Authorize(Policy = "home.faq")]
         public IActionResult FAQ()
         {
             var datas = db.Faqs
@@ -90,7 +90,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "ui.home.email")]
+        [Authorize(Policy = "home.email")]
         public IActionResult Subscribe([Bind("Email")]Subscribe model)
         {
             if (ModelState.IsValid)
@@ -150,7 +150,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpGet]
         [Route("subscribe-confirm")]
-        [Authorize(Policy = "ui.home.subscribeconfirm")]
+        [Authorize(Policy = "home.subscribeconfirm")]
         public IActionResult SubscribeConfirm(string token)
         {
             token = token.Decrypt();
