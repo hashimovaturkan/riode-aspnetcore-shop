@@ -26,7 +26,7 @@ namespace Riode_WebUI.AppCode.Application.ColorsModule
                 if (request.Id == null || request.Id <= 0)
                     return 0;
 
-                var color = db.Colors.FirstOrDefault(c => c.Id == request.Id || c.DeletedByUserId == null);
+                var color = db.Colors.FirstOrDefault(c => c.Id == request.Id && c.DeletedByUserId == null);
                 if(color == null)
                 {
                     return 0;

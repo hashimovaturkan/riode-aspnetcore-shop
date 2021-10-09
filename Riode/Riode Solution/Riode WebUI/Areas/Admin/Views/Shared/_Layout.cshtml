@@ -49,6 +49,7 @@
 
     <link rel="stylesheet" href="~/admin/css/style.css" />
     <link rel="stylesheet" href="~/admin/css/colors/default.css" id="colorSkinCSS">
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
     @RenderSection("addcss", required: false)
 </head>
 <body class="crm_body_bg">
@@ -538,6 +539,30 @@
     <script src="~/admin/vendors/progressbar/jquery.barfiller.js"></script>
     <!-- tag input -->
     <script src="~/admin/vendors/tagsinput/tagsinput.js"></script>
+
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
     <!-- text editor js -->
     <script src="~/admin/js/admin-table.js"></script>
     @RenderSection("addjs", required: false)

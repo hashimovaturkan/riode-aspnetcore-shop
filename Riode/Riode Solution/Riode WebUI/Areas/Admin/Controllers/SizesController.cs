@@ -14,15 +14,13 @@ using Riode_WebUI.Models.Entities;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class SizesController : Controller
     {
-        private readonly RiodeDbContext db;
         readonly IMediator mediator;
 
-        public SizesController(RiodeDbContext db, IMediator mediator)
+        public SizesController( IMediator mediator)
         {
-            this.db = db;
             this.mediator = mediator;
         }
 
@@ -77,7 +75,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var vm = new SizeModelView();
+            var vm = new SizeViewModel();
             vm.Id= response.Id;
             vm.Name = response.Name;
             vm.Description = response.Description;

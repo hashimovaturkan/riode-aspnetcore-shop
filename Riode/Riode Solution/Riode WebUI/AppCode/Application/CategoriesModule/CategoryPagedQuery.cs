@@ -27,8 +27,8 @@ namespace Riode_WebUI.AppCode.Application.CategoriesModule
             {
                 var query = db.Categories
                     .Include(c => c.Parent)
-                    .Include(c => c.Children)
-                    .ThenInclude(c => c.Children)
+                    .Include(c => c.Children.Where(k=>k.DeletedByUserId == null))
+                    .ThenInclude(c => c.Children.Where(k => k.DeletedByUserId == null))
                     .Where(s => s.DeletedByUserId == null && s.ParentId == null).AsQueryable();
                 
                 return new PagedViewModel<Category>(query, request.PageIndex, request.PageSize);

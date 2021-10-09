@@ -17,33 +17,35 @@ namespace Riode_WebUI.AppCode.Application.BrandsModule
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-    }
 
-    public class BrandCreateCommandHandler : IRequestHandler<BrandCreateCommand, long>
-    {
-        readonly RiodeDbContext db;
-        readonly IActionContextAccessor ctx;
-        public BrandCreateCommandHandler(RiodeDbContext db, IActionContextAccessor ctx)
+        public class BrandCreateCommandHandler : IRequestHandler<BrandCreateCommand, long>
         {
-            this.ctx = ctx;
-            this.db = db;
-        }
-        public async Task<long> Handle(BrandCreateCommand request, CancellationToken cancellationToken)
-        {
-            if (ctx.IsModelStateValid())
+            readonly RiodeDbContext db;
+            readonly IActionContextAccessor ctx;
+            public BrandCreateCommandHandler(RiodeDbContext db, IActionContextAccessor ctx)
             {
-                var brand = new Brand();
-                brand.Name = request.Name;
-                brand.Description = request.Description;
-
-                //todo
-                db.Brands.Add(brand);
-                await db.SaveChangesAsync(cancellationToken);
-                return brand.Id;
+                this.ctx = ctx;
+                this.db = db;
             }
+            public async Task<long> Handle(BrandCreateCommand request, CancellationToken cancellationToken)
+            {
+                if (ctx.IsModelStateValid())
+                {
+                    var brand = new Brand();
+                    brand.Name = request.Name;
+                    brand.Description = request.Description;
 
-            return 0;
+                    //todo
+                    db.Brands.Add(brand);
+                    await db.SaveChangesAsync(cancellationToken);
+                    return brand.Id;
+                }
 
+                return 0;
+
+            }
         }
     }
+
+    
 }

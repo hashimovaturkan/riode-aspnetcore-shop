@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Riode_WebUI.AppCode.Application.SizesModule
 {
-    public class SizeUpdateCommand:SizeModelView,IRequest<long>
+    public class SizeUpdateCommand:SizeViewModel,IRequest<long>
     {
 
         public class SizeUpdateCommandHandler : IRequestHandler<SizeUpdateCommand, long>

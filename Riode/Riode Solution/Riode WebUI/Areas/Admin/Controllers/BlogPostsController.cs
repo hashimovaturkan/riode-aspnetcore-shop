@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Riode_WebUI.AppCode.Application.BlogPostsModule;
 using Riode_WebUI.AppCode.Application.BrandsModule;
+using Riode_WebUI.AppCode.Application.CategoriesModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 
@@ -49,13 +50,15 @@ namespace Riode_WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            var category = await mediator.Send(new CategoryChooseQuery());
+            ViewData["CategoryId"] = category.Where(b => b.Id == response.CategoryId).FirstOrDefault(b => b.DeletedByUserId == null).Name;
             return View(response);
         }
 
         [Authorize(Policy = "admin.blogpost.create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            //ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name");
             return View();
         }
 
@@ -70,7 +73,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             if (response != null)
                 return RedirectToAction(nameof(Index));
 
-           // ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", command.CategoryId);
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name", command.CategoryId);
 
             return View(command);
             
@@ -98,7 +101,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             vm.BlogPost = blogPost;
 
 
-            //ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", response.CategoryId);
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name", response.CategoryId);
             return View(vm);
         }
 
@@ -126,9 +129,5 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             return Json(result);
         }
 
-        //private bool BlogPostExists(long id)
-        //{
-        //    return db.BlogPosts.Any(e => e.Id == id && e.DeletedByUserId == null);
-        //}
     }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.FaqsModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 
@@ -15,34 +17,34 @@ namespace Riode_WebUI.Areas.Admin.Controllers
     public class FaqsController : Controller
     {
         private readonly RiodeDbContext db;
+        readonly IMediator mediator;
 
-        public FaqsController(RiodeDbContext db)
+        public FaqsController(RiodeDbContext db, IMediator mediator)
         {
             this.db = db;
+            this.mediator = mediator;
         }
 
         [Authorize(Policy = "admin.faqs.index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(FaqPagedQuery query)
         {
-            return View(await db.Faqs.ToListAsync());
+            var response = await mediator.Send(query);
+            if (response == null)
+                return NotFound();
+
+            return View(response);
         }
 
         [Authorize(Policy = "admin.faqs.details")]
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(FaqSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var faq = await db.Faqs
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (faq == null)
-            {
-                return NotFound();
-            }
-
-            return View(faq);
+            return View(response);
         }
 
         [Authorize(Policy = "admin.faqs.create")]
@@ -54,100 +56,56 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.faqs.create")]
-        public async Task<IActionResult> Create([Bind("Question,Answer,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Faq faq)
+        public async Task<IActionResult> Create(FaqCreateCommand command)
         {
-            if (ModelState.IsValid)
-            {
-                db.Add(faq);
-                await db.SaveChangesAsync();
+            var response =await mediator.Send(command);
+            if(response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            return View(faq);
+            
+            return View(command);
         }
 
         [Authorize(Policy = "admin.faqs.edit")]
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(FaqSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+            if (response == null)
             {
                 return NotFound();
             }
-
-            var faq = await db.Faqs.FindAsync(id);
-            if (faq == null)
-            {
-                return NotFound();
-            }
-            return View(faq);
+            var vm = new FaqViewModel();
+            vm.Id = response.Id;
+            vm.Answer = response.Answer;
+            vm.Question = response.Question;
+            return View(vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.faqs.edit")]
-        public async Task<IActionResult> Edit(long id, [Bind("Question,Answer,Id,CreatedByUserId,CreatedDate,DeletedByUserId,DeletedDate")] Faq faq)
+        public async Task<IActionResult> Edit(FaqUpdateCommand command)
         {
-            if (id != faq.Id)
-            {
-                return NotFound();
-            }
+            var response = await mediator.Send(command);
 
-            if (ModelState.IsValid)
+            if (response > 0)
             {
-                try
-                {
-                    db.Update(faq);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FaqExists(faq.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            return View(faq);
+
+            return View(command);
         }
 
-        [Authorize(Policy = "admin.faqs.delete")]
-        public async Task<IActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var faq = await db.Faqs
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (faq == null)
-            {
-                return NotFound();
-            }
-
-            return View(faq);
-        }
-
-        // POST: Admin/Faqs/Delete/5
-        [HttpPost, ActionName("Delete")]
+        
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.faqs.delete")]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(FaqDeleteCommand command)
         {
-            var faq = await db.Faqs.FindAsync(id);
-            db.Faqs.Remove(faq);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var response = await mediator.Send(command);
+            
+            return Json(response);
         }
 
-        private bool FaqExists(long id)
-        {
-            return db.Faqs.Any(e => e.Id == id);
-        }
     }
 }

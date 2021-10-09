@@ -162,10 +162,10 @@ namespace Riode_WebUI.Controllers
                 {
                     userManager.AddToRoleAsync(riodeUser, riodeRole.Name).Wait();
 
-                    string token = $"emailconfirmtoken-{riodeUser.Id}-{DateTime.Now:yyyyMMddHHmmss}";
-                    token = token.Encrypt();
-                    //string token = userManager.GenerateEmailConfirmationTokenAsync(riodeUser).Result;
-                    string path = $"{Request.Scheme}://{Request.Host}/email-confirm?token={token}";
+                    //string token = $"emailconfirmtoken-{riodeUser.Id}-{DateTime.Now:yyyyMMddHHmmss}";
+                    //token = token.Encrypt();
+                    string token = userManager.GenerateEmailConfirmationTokenAsync(riodeUser).Result;
+                    string path = $"{Request.Scheme}://{Request.Host}/email-confirm?email={riodeUser.Email}&token={token}";
                     var sendMail = configuration.SendEmail(user.Email, "Riode email confirming", $"Please, use <a href={path}>this link</a> for confirming");
 
                     if (sendMail == false)
@@ -208,52 +208,64 @@ namespace Riode_WebUI.Controllers
         [Authorize(Policy = "account.emailconfirm")]
         public async Task<IActionResult> EmailConfirm(string email, string token)
         {
-            //var user = userManager.FindByEmailAsync(email).Result;
-            //IdentityResult result =await userManager.
-            //            ConfirmEmailAsync(user, token);
-            //if (result.Succeeded)
-            //{
-            //    ViewBag.Message = "Email confirmed successfully!";
-            //    return View();
-            //}
-            //else
-            //{
-            //    ViewBag.Message = "Error while confirming your email!";
-            //    return View();
-            //}
-
-            token = token.Decrypt();
-
-            Match match =Regex.Match(token, @"emailconfirmtoken-(?<id>\d+)-(?<executeTimeStamp>\d{14})");
-
-            if (match.Success)
+            var user = userManager.FindByEmailAsync(email).Result;
+            if (user == null)
             {
-                long id = Convert.ToInt64(match.Groups["id"].Value);
-                string executeTimeStamp = match.Groups["executeTimeStamp"].Value;
+                ViewBag.Message = "Token error!";
+                return View();
+            }
 
-                var user = db.Users.FirstOrDefault(u => u.Id == id);
+            if (user.EmailConfirmed == true)
+            {
+                ViewBag.Message = "You have already confirmed.";
+                return View();
+            }
 
-                if (user == null)
-                {
-                    ViewBag.Message = "Token error!";
-                    goto end;
-                }
-                if (user.EmailConfirmed == true)
-                {
-                    ViewBag.Message = "You have already confirmed.";
-                    goto end;
-                }
-                user.EmailConfirmed = true;
-                db.SaveChanges();
+            IdentityResult result = await userManager.
+                        ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
                 ViewBag.Message = "We're excited to have you get started. Your account is confirmed successfully.";
-
+                return View();
             }
             else
             {
-                ViewBag.Message = "Wrong Application!";
+                ViewBag.Message = "Error while confirming your email!";
+                return View();
             }
-        end:
-            return View();
+
+            //    token = token.Decrypt();
+
+            //    Match match =Regex.Match(token, @"emailconfirmtoken-(?<id>\d+)-(?<executeTimeStamp>\d{14})");
+
+            //    if (match.Success)
+            //    {
+            //        long id = Convert.ToInt64(match.Groups["id"].Value);
+            //        string executeTimeStamp = match.Groups["executeTimeStamp"].Value;
+
+            //        var user = db.Users.FirstOrDefault(u => u.Id == id);
+
+            //        if (user == null)
+            //        {
+            //            ViewBag.Message = "Token error!";
+            //            goto end;
+            //        }
+            //        if (user.EmailConfirmed == true)
+            //        {
+            //            ViewBag.Message = "You have already confirmed.";
+            //            goto end;
+            //        }
+            //        user.EmailConfirmed = true;
+            //        db.SaveChanges();
+            //        ViewBag.Message = "We're excited to have you get started. Your account is confirmed successfully.";
+
+            //    }
+            //    else
+            //    {
+            //        ViewBag.Message = "Wrong Application!";
+            //    }
+            //end:
+            //    return View();
         }
 
         [Authorize(Policy = "account.signout")]

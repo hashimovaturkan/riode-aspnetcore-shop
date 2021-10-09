@@ -226,3 +226,5 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.genruntimeconfig.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\Register.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\EmailConfirm.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\AutoMapper.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

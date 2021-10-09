@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Riode_WebUI.AppCode.Infrastructure;
 using Riode_WebUI.Models.DataContexts;
+using Riode_WebUI.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,15 @@ namespace Riode_WebUI.AppCode.Application.CategoriesModule
                     goto end;
                 }
 
-                var category = db.Categories.FirstOrDefault(b => b.Id == request.Id && b.DeletedByUserId == null);
-                
+                //var category = db.Categories.FirstOrDefault(b => b.Id == request.Id && b.DeletedByUserId == null);
+
+                var category =await db.Categories
+                    .Include(c => c.Children)
+                    .ThenInclude(c => c.Children)
+                    .Where(b => b.Id == request.Id && b.DeletedByUserId == null)
+                    .ToListAsync();
+
+
                 if (category == null)
                 {
                     response.Error = true;
@@ -43,8 +51,14 @@ namespace Riode_WebUI.AppCode.Application.CategoriesModule
                     goto end;
                 }
 
-                category.DeletedDate = DateTime.Now;
-                category.DeletedByUserId = 1;
+                foreach (var item in category)
+                {
+                    item.DeletedDate = DateTime.Now;
+                    item.DeletedByUserId = 1;
+                }
+
+                //category.DeletedDate = DateTime.Now;
+                //category.DeletedByUserId = 1;
                 response.Error = false;
                 response.Message = "Successfully operation!";
 

@@ -1,4 +1,4 @@
-﻿@model Riode_WebUI.Models.Entities.Product
+﻿@model ProductViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -21,7 +21,7 @@
                         <div style="width: 600px;" class="imager-container" id="viewer1" name="files">
                             @foreach (var item in Model.Images)
                             {
-                                <label thumb-url='/uploads/images/product/@item.FileName' image-id="@item.Id" @(item.IsMain == true ? "checked" :"")></label>
+                                <label thumb-url='/uploads/images/product/@item.FileName' image-id="@item.Id" @(item.IsMain == true ? "checked" : "")></label>
                             }
                         </div>
                     </div>
@@ -32,23 +32,55 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="BrandId" class="control-label"></label>
-                        <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                        <select asp-for="BrandId" class="form-control" asp-items="@ViewBag.BrandId"></select>
                         <span asp-validation-for="BrandId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="CategoryId" class="control-label"></label>
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.CategoryId"></select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ShortDescription" class="control-label"></label>
-                        <input asp-for="ShortDescription" class="form-control" />
+                        <textarea asp-for="ShortDescription" class="form-control editor"></textarea>
                         <span asp-validation-for="ShortDescription" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
-                        <input asp-for="Description" class="form-control" />
+                        <textarea asp-for="Description" class="form-control editor" ></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class=" form-row">
+                        <div class="col-12">
+                            <div class="tab-control" role="tabcontrol">
+                                <div class="tab-page" id="specifications" aria-title="Specification" selected>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{ int index = 0; }
+                                            @foreach (var item in Model.SelectedSpecifications)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@(index + 1)</th>
+                                                    <td>@item.Name</td>
+                                                    <td>
+                                                        <input type="hidden" name="SelectedSpecifications[@index].Id" value="@item.Id" />
+                                                        <input type="text" class="form-control w-100" name="SelectedSpecifications[@(index++)].Value"  value="@item.Value" />
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @*<div class="tab-page" id="permissions" aria-title="Selahiyyetler" selected></div>*@
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" />
@@ -68,12 +100,15 @@
     <script src="https://kit.fontawesome.com/1154e1d6ee.js" crossorigin="anonymous"></script>
     <link href="~/libs/multiple-imager-js/css/imager.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/libs/multiple-imager-js/css/imager.css">
+    <link rel="stylesheet" href="~/libs/tab-control/tab-control.css" />
 
 }
 
 
 @section addjs{
     <script src="~/libs/multiple-imager-js/js/imager.js"></script>
+    <script src="~/libs/ckeditor5/ckeditor.js"></script>
+    <script src="~/libs/tab-control/tab-control.js"></script>
     <script>
         $('#viewer1').imgadd({
             tnWidth: '120px',
@@ -82,6 +117,16 @@
             plusInnerHtml: '',
             plusBtnClass: undefined
         });
+
+        $(document).ready(function () {
+            document.querySelectorAll(".editor").forEach(item => {
+                ClassicEditor
+                    .create(item)
+                    .catch(error => {
+                        console.error(error);
+                    });
+            })
+        })
     </script>
 }
 

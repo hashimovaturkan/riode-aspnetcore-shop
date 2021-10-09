@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Riode_WebUI.AppCode.Application.BrandsModule;
+using Riode_WebUI.AppCode.Application.CategoriesModule;
+using Riode_WebUI.AppCode.Application.ProductsModule;
 using Riode_WebUI.Models.DataContexts;
 using Riode_WebUI.Models.Entities;
 using Riode_WebUI.Models.FormModels;
@@ -15,247 +19,272 @@ using Riode_WebUI.Models.FormModels;
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class ProductsController : Controller
     {
         private readonly RiodeDbContext db;
         private readonly IWebHostEnvironment env;
+        readonly IMediator mediator;
 
-        public ProductsController(RiodeDbContext db, IWebHostEnvironment env)
+        public ProductsController(RiodeDbContext db, IWebHostEnvironment env, IMediator mediator)
         {
             this.db = db;
             this.env = env;
+            this.mediator = mediator;
         }
 
         [Authorize(Policy = "admin.products.index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(ProductPagedQuery query)
         {
-            var riodeDbContext = db.Products
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
-                .Include(p=>p.Images.Where(i => i.DeletedDate == null))
-                .Include(p=>p.ProductSizeColorCollections)
-                .Where(s => s.DeletedByUserId == null);
-            return View(await riodeDbContext.ToListAsync());
+            var response = await mediator.Send(query);
+
+            return View(response);
         }
 
         [Authorize(Policy = "admin.products.details")]
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(ProductSingleQuery query)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            
-            var product = await db.Products
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
-                .Include(p => p.Images.Where(i => i.DeletedDate == null))
-                .Include(p => p.ProductSizeColorCollections.Where(s => s.ProductId == id))
-                .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (product == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            var brand = await mediator.Send(new BrandChooseQuery());
+            var category = await mediator.Send(new CategoryChooseQuery());
+            ViewData["BrandId"] = brand.Where(b=> b.Id==response.BrandId).FirstOrDefault(b => b.DeletedByUserId==null).Name;
+            ViewData["CategoryId"] = category.Where(b => b.Id == response.CategoryId).FirstOrDefault(b => b.DeletedByUserId == null).Name;
+
+            return View(response);
         }
 
         [Authorize(Policy = "admin.products.create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
 
-            ViewData["ColorId"] = db.ProductSizeColorCollection.Select(p=>p.Color).ToList();
-            ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name");
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name");
+            //ViewData["ColorId"] = db.ProductSizeColorCollection.Select(p=>p.Color).ToList();
+            ViewData["BrandId"] = new SelectList(await mediator.Send(new BrandChooseQuery()), "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name");
+            ViewBag.Specifications = db.Specifications.ToList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.products.create")]
-        public async Task<IActionResult> Create(Product product, ImageItemFormModel[] images)
+        public async Task<IActionResult> Create(ProductCreateCommand command)
         {
-            if(images == null || !images.Any(i=>i.File != null))
-            {
-                ModelState.AddModelError("Images", "There are not images");
-            }
+            var response = await mediator.Send(command);
 
-            if (ModelState.IsValid)
-            {
-                product.Images = new List<ProductImage>();
-                foreach (var image in images.Where(i => i.File != null))
+            ViewData["BrandId"] = new SelectList(await mediator.Send(new BrandChooseQuery()), "Id", "Name", command.BrandId);
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name", command.CategoryId);
+
+            if (response > 0)
+                return Ok(new
                 {
-                    string extension = Path.GetExtension(image.File.FileName); //.jpg
-                    string imagePath = $"{DateTime.Now:yyyyMMddHHmmss}-{Guid.NewGuid()}{extension}";
-                    string physicalPath = Path.Combine(env.ContentRootPath,
-                        "wwwroot",
-                        "uploads",
-                        "images",
-                        "product",
-                        imagePath);
+                    error = false,
+                    message="It was created successfully!"
+                });
 
-                    using(var stream = new FileStream(physicalPath, FileMode.Create, FileAccess.Write))
-                    {
-                        await image.File.CopyToAsync(stream);
-                    }
-
-                    product.Images.Add(new ProductImage {
-                        IsMain = image.IsMain,
-                        FileName = imagePath
-                    });
-                }
-
-                db.Products.Add(product);
-                await db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            return Ok(new
+            {
+                error = true,
+                message= "Please, try again!"
+            });
         }
 
         [Authorize(Policy = "admin.products.edit")]
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(ProductSingleQuery query)
         {
-            if (id == null)
+            var response = await mediator.Send(query);
+
+            if (response == null)
             {
                 return NotFound();
             }
 
-            var product = await db.Products.Include(k=>k.Images.Where(i=>i.DeletedDate==null))
-                                            .FirstOrDefaultAsync(k => k.Id == id && k.DeletedDate==null);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            var vm = new ProductViewModel();
+            vm.Id = response.Id;
+            vm.Name = response.Name;
+            vm.Description = response.Description;
+            vm.ShortDescription = response.ShortDescription;
+            vm.SkuCode = response.SkuCode;
+            vm.Images = response.Images;
+            vm.Files = response.Files;
+            vm.BrandId = response.BrandId;
+            vm.CategoryId = response.CategoryId;
+            vm.ProductSizeColorCollections = response.ProductSizeColorCollections;
+
+            ViewBag.Specifications = db.Specifications.ToList();
+            ViewData["BrandId"] = new SelectList(await mediator.Send(new BrandChooseQuery()), "Id", "Name", response.BrandId);
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name", response.CategoryId);
+
+            //var productEditCommand = mapper.Map<ProductEditCommand>(product);
+
+            //sual burani nece cixarim
+            vm.SelectedSpecifications = (from spec in db.Specifications
+                                        join sv in db.SpecificationValues.Where(ss => ss.ProductId == response.Id) on spec.Id equals sv.SpecificationId into lSv
+                                        from l in lSv.DefaultIfEmpty()
+                                        select new SelectedSpecificationFormModel
+                                        {
+                                            Id = spec.Id,
+                                            Name = spec.Name,
+                                            Value = l.Value
+                                        })
+                                         .ToArray();
+
+            return View(vm);
+
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var product = await db.Products.Include(k=>k.Images.Where(i=>i.DeletedDate==null))
+            //                                .FirstOrDefaultAsync(k => k.Id == id && k.DeletedDate==null);
+            //if (product == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name", response.BrandId);
+            //ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", response.CategoryId);
+            //return View(product);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "admin.products.edit")]
-        public async Task<IActionResult> Edit(long id, Product product)
+        public async Task<IActionResult> Edit(ProductUpdateCommand command)
         {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
+            var response = await mediator.Send(command);
 
-            if (ModelState.IsValid)
-            {
-                var entity =await db.Products
-                    .Include(p=>p.Images.Where(pi=>pi.DeletedByUserId == null))
-                    .FirstOrDefaultAsync(p => p.Id == product.Id && p.DeletedByUserId == null);
-                entity.Name = product.Name;
-                entity.Description = product.Description;
-
-                /// Silinmishler ---start
-                int[] deletedImageIds = product.Files.Where(p => p.Id > 0 && string.IsNullOrWhiteSpace(p.TempPath))
-                                                .Select(p => p.Id.Value)
-                                                .ToArray();
-
-                foreach (var itemId in deletedImageIds)
-                {
-                    var oldImage = await db.ProductImages.FirstOrDefaultAsync(pi => pi.ProductId == entity.Id && pi.Id == itemId);
-
-                    if (oldImage == null)
-                        continue;
-
-                    oldImage.DeletedDate = DateTime.Now;
-                    oldImage.DeletedByUserId = 1;
-                }
-                /// Silinmishler ---end
-
-                foreach (var item in product.Files.Where(f=>(f.Id>0 && !string.IsNullOrWhiteSpace(f.TempPath)) //bazada olub deyismeyenler
-                || (f.File != null && f.Id ==null)))///yeni yarananlar
-                {
-                    if(item.File == null) //deyismeyenler
-                    {
-                        var oldImage = await db.ProductImages.FirstOrDefaultAsync(pi => pi.ProductId == entity.Id && pi.Id == item.Id);
-
-                        if (oldImage == null)
-                            continue;
-
-                        oldImage.IsMain = item.IsMain;
-                    }
-                    else if(item.File != null) //yeni elave olunanlar
-                    {
-                        string extension = Path.GetExtension(item.File.FileName);
-                        string fileName = $"{Guid.NewGuid()}{extension}";
-
-                        string physicalFileName = Path.Combine(env.ContentRootPath,
-                                                               "wwwroot",
-                                                               "uploads",
-                                                               "images",
-                                                               "product",
-                                                               fileName);
-
-                        using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
-                        {
-                            await item.File.CopyToAsync(stream);
-                        }
-
-                        entity.Images.Add(new ProductImage
-                        {
-                            FileName = fileName,
-                            IsMain = item.IsMain
-                        });
-
-                    }
-                }
-
-
-
-
-
-                await db.SaveChangesAsync();
+            if (response > 0)
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Id", product.BrandId);
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Id", product.CategoryId);
-            return View(product);
+
+            ViewData["BrandId"] = new SelectList(await mediator.Send(new BrandChooseQuery()), "Id", "Name", command.BrandId);
+            ViewData["CategoryId"] = new SelectList(await mediator.Send(new CategoryChooseQuery()), "Id", "Name", command.CategoryId);
+
+            return View(command);
+            //    if (id != product.Id)
+            //    {
+            //        return NotFound();
+            //    }
+
+            //    if (ModelState.IsValid)
+            //    {
+            //        var entity =await db.Products
+            //            .Include(p=>p.Images.Where(pi=>pi.DeletedByUserId == null))
+            //            .FirstOrDefaultAsync(p => p.Id == product.Id && p.DeletedByUserId == null);
+            //        entity.Name = product.Name;
+            //        entity.Description = product.Description;
+
+            //        /// Silinmishler ---start
+            //        int[] deletedImageIds = product.Files.Where(p => p.Id > 0 && string.IsNullOrWhiteSpace(p.TempPath))
+            //                                        .Select(p => p.Id.Value)
+            //                                        .ToArray();
+
+            //        foreach (var itemId in deletedImageIds)
+            //        {
+            //            var oldImage = await db.ProductImages.FirstOrDefaultAsync(pi => pi.ProductId == entity.Id && pi.Id == itemId);
+
+            //            if (oldImage == null)
+            //                continue;
+
+            //            oldImage.DeletedDate = DateTime.Now;
+            //            oldImage.DeletedByUserId = 1;
+            //        }
+            //        /// Silinmishler ---end
+
+            //        foreach (var item in product.Files.Where(f=>(f.Id>0 && !string.IsNullOrWhiteSpace(f.TempPath)) //bazada olub deyismeyenler
+            //        || (f.File != null && f.Id ==null)))///yeni yarananlar
+            //        {
+            //            if(item.File == null) //deyismeyenler
+            //            {
+            //                var oldImage = await db.ProductImages.FirstOrDefaultAsync(pi => pi.ProductId == entity.Id && pi.Id == item.Id);
+
+            //                if (oldImage == null)
+            //                    continue;
+
+            //                oldImage.IsMain = item.IsMain;
+            //            }
+            //            else if(item.File != null) //yeni elave olunanlar
+            //            {
+            //                string extension = Path.GetExtension(item.File.FileName);
+            //                string fileName = $"{Guid.NewGuid()}{extension}";
+
+            //                string physicalFileName = Path.Combine(env.ContentRootPath,
+            //                                                       "wwwroot",
+            //                                                       "uploads",
+            //                                                       "images",
+            //                                                       "product",
+            //                                                       fileName);
+
+            //                using (var stream = new FileStream(physicalFileName, FileMode.Create, FileAccess.Write))
+            //                {
+            //                    await item.File.CopyToAsync(stream);
+            //                }
+
+            //                entity.Images.Add(new ProductImage
+            //                {
+            //                    FileName = fileName,
+            //                    IsMain = item.IsMain
+            //                });
+
+            //            }
+            //        }
+
+
+
+
+
+            //        await db.SaveChangesAsync();
+            //        return RedirectToAction(nameof(Index));
+            //    }
+            //    ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Id", product.BrandId);
+            //    ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Id", product.CategoryId);
+            //    return View(product);
         }
 
-        [Authorize(Policy = "admin.products.delete")]
-        public async Task<IActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //[Authorize(Policy = "admin.products.delete")]
+        //public async Task<IActionResult> Delete(long? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var product = await db.Products
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+        //    var product = await db.Products
+        //        .Include(p => p.Brand)
+        //        .Include(p => p.Category)
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(product);
-        }
+        //    return View(product);
+        //}
 
         
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost]
         [Authorize(Policy = "admin.products.delete")]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> Delete(ProductDeleteCommand command)
         {
-            var product = await db.Products.FindAsync(id);
-            db.Products.Remove(product);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var result = await mediator.Send(command);
+            return Json(result);
+            //var product = await db.Products.FindAsync(id);
+            //db.Products.Remove(product);
+            //await db.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(long id)
-        {
-            return db.Products.Any(e => e.Id == id);
-        }
+        //private bool ProductExists(long id)
+        //{
+        //    return db.Products.Any(e => e.Id == id);
+        //}
     }
 }

@@ -161,6 +161,8 @@ namespace Riode_WebUI
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
         }
 
         
