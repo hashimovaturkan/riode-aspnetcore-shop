@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riode WebUI", "Riode WebUI\Riode WebUI.csproj", "{FB993D4B-2F48-4C31-97F4-F89FDD9EE936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riode WebUI", "Riode WebUI\Riode WebUI.csproj", "{FB993D4B-2F48-4C31-97F4-F89FDD9EE936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riode.WebApi", "Riode.WebApi\Riode.WebApi.csproj", "{2F38CF2F-1CD3-4BCE-9225-08726FA449A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riode.Domain", "Riode.Domain\Riode.Domain.csproj", "{090A8DB1-BA61-44CB-BB47-C7E4E78BE5E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riode.Application", "Riode.Application\Riode.Application.csproj", "{B71E6EC6-689F-48EE-8E6A-FB820A3B2595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riode.Resources", "Riode.Resources\Riode.Resources.csproj", "{F15A643B-3FCC-4D89-BE4F-FAC82613A3B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{FB993D4B-2F48-4C31-97F4-F89FDD9EE936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB993D4B-2F48-4C31-97F4-F89FDD9EE936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB993D4B-2F48-4C31-97F4-F89FDD9EE936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F38CF2F-1CD3-4BCE-9225-08726FA449A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F38CF2F-1CD3-4BCE-9225-08726FA449A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F38CF2F-1CD3-4BCE-9225-08726FA449A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F38CF2F-1CD3-4BCE-9225-08726FA449A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090A8DB1-BA61-44CB-BB47-C7E4E78BE5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090A8DB1-BA61-44CB-BB47-C7E4E78BE5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090A8DB1-BA61-44CB-BB47-C7E4E78BE5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090A8DB1-BA61-44CB-BB47-C7E4E78BE5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71E6EC6-689F-48EE-8E6A-FB820A3B2595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71E6EC6-689F-48EE-8E6A-FB820A3B2595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71E6EC6-689F-48EE-8E6A-FB820A3B2595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71E6EC6-689F-48EE-8E6A-FB820A3B2595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15A643B-3FCC-4D89-BE4F-FAC82613A3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15A643B-3FCC-4D89-BE4F-FAC82613A3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15A643B-3FCC-4D89-BE4F-FAC82613A3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15A643B-3FCC-4D89-BE4F-FAC82613A3B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

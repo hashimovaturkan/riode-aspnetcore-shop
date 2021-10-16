@@ -48,39 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AppCode\Resources\Admin\Sidebar\Sidebar.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Sidebar.resx</DependentUpon>
-    </Compile>
-    <Compile Update="AppCode\Resources\User\Contact\ContactResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ContactResource.resx</DependentUpon>
-    </Compile>
-    <Compile Update="AppCode\Resources\User\LayoutResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LayoutResource.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="AppCode\Resources\Admin\Sidebar\Sidebar.resx">
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Sidebar.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="AppCode\Resources\User\Contact\ContactResource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContactResource.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Update="AppCode\Resources\User\LayoutResource.resx">
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LayoutResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Riode.Application\Riode.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Riode_WebUI.AppCode.Application.ColorsModule;
-using Riode_WebUI.Models.DataContexts;
+using Riode.Application.Modules.ColorsModule;
+using Riode.Domain.Models.DataContexts;
 using System.Threading.Tasks;
 
 namespace Riode_WebUI.Areas.Admin.Controllers

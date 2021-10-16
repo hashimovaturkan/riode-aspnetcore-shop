@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Riode_WebUI.AppCode.Extensions;
-using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities;
+using Riode.Application.Core.Extensions;
+using Riode.Domain.Models.DataContexts;
+using Riode.Domain.Models.Entities;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {

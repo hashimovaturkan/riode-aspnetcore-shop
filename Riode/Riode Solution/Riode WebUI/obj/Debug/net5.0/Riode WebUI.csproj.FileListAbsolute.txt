@@ -1,11 +1,4 @@
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.AssemblyReference.cache
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode_WebUI.AppCode.Resources.Admin.Sidebar.Sidebar.resources
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode_WebUI.AppCode.Resources.User.Contact.ContactResource.resources
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode_WebUI.AppCode.Resources.User.LayoutResource.resources
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode_WebUI.AppCode.Resources.Admin.Sidebar.Sidebar.en.resources
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode_WebUI.AppCode.Resources.User.Contact.ContactResource.en.resources
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode_WebUI.AppCode.Resources.User.LayoutResource.en.resources
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.csproj.GenerateResource.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.GeneratedMSBuildEditorConfig.editorconfig
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.AssemblyInfoInputs.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.AssemblyInfo.cs
@@ -13,7 +6,6 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.MvcApplicationPartsAssemblyInfo.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorAssemblyInfo.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.RazorAssemblyInfo.cs
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\en\Riode WebUI.resources.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\staticwebassets\Riode WebUI.StaticWebAssets.Manifest.cache
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\staticwebassets\Riode WebUI.StaticWebAssets.xml
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\scopedcss\bundle\Riode WebUI.styles.css
@@ -102,7 +94,6 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\ref\Riode WebUI.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.pdb
-E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\en\Riode WebUI.resources.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode WebUI.Views.pdb
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Humanizer.dll
@@ -228,3 +219,13 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\EmailConfirm.cshtml.g.cs
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\AutoMapper.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Application.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Domain.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Application.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Domain.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Resources.pdb
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\en\Riode.Resources.resources.dll
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.MvcApplicationPartsAssemblyInfo.cs

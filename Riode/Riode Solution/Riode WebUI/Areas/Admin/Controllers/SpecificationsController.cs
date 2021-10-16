@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Riode_WebUI.AppCode.Application.SpecificationsModule;
+using Riode.Application.Modules.SpecificationsModule;
+using Riode.Application.Modules.SpecificationsModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;

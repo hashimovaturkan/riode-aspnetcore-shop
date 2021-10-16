@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Riode_WebUI.AppCode.Application.BrandsModule;
-using Riode_WebUI.AppCode.Application.CategoriesModule;
-using Riode_WebUI.AppCode.Application.ProductsModule;
-using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities;
-using Riode_WebUI.Models.FormModels;
+using Riode.Domain.Models.DataContexts;
+using Riode.Domain.Models.Entities;
+using Riode.Domain.Models.FormModels;
+using Riode.Application.Modules.ProductsModule;
+using Riode.Application.Modules.CategoriesModule;
+using Riode.Application.Modules.BrandsModule;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {

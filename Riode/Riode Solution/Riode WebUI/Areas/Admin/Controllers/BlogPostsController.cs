@@ -10,11 +10,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Riode_WebUI.AppCode.Application.BlogPostsModule;
-using Riode_WebUI.AppCode.Application.BrandsModule;
-using Riode_WebUI.AppCode.Application.CategoriesModule;
-using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities;
+using Riode.Domain.Models.DataContexts;
+using Riode.Domain.Models.Entities;
+using Riode.Application.Modules.BlogPostsModule;
+using Riode.Application.Modules.CategoriesModule;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {

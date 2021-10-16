@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Riode_WebUI.AppCode.Extensions;
-using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities.Membership;
-using Riode_WebUI.Models.FormModels;
+using Riode.Application.Core.Extensions;
+using Riode.Domain.Models.DataContexts;
+using Riode.Domain.Models.Entities.Membership;
+using Riode.Domain.Models.FormModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

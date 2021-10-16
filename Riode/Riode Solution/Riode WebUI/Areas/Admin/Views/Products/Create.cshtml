@@ -195,7 +195,6 @@
         $(document).ready(function () {
             let index = 0;
             let specifications = [];
-            //let removeChosen = [];
             $(".modal-content").submit(function (e) {
                 e.preventDefault();
 
@@ -212,7 +211,6 @@
                         success: function (response) {
                             if (response.error == false) {
 
-                                //sual: burani harda yazsam duzdu
                                 const html = `<tr id="${index}">
                                                 <th scope="row"><input type="checkbox" id="${index}" class="deleteChosen" value="${response.id}"/></th>
                                                 <td>${response.name}</td>
@@ -239,7 +237,6 @@
             $(".btn-remove-specification").click(function (e) {
                 e.preventDefault();
                 $("input.deleteChosen:checked").each(function (index, element) {
-                    //removeChosen.push($(this).val());
                     if (jQuery.inArray(Number($(this).val()), specifications) != -1) {
                         specifications = $.grep(specifications, function (value) {
                             return value != Number($(element).val());
@@ -264,27 +261,6 @@
 
                     
                 });
-
-                @*let obj = {
-                    ids: removeChosen
-                };
-                $.ajax({
-                        type: "post",
-                        url: '@Url.Action("DeleteChosen")',
-                        data: JSON.stringify(obj),
-                        contentType: 'application/json',
-                        dataType: "json",
-                        success: function (response) {
-                            if (response.error == false) {
-                                removeChosen = [];
-                                console.log("A");
-                            }
-                            else {
-                            }
-                        },
-                        error: function (response) {
-                        }
-                    });*@
 
             });
         });

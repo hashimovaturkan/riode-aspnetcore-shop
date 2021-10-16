@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Riode_WebUI.AppCode.Application.BrandsModule;
-using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities;
+using Riode.Domain.Models.DataContexts;
+using Riode.Domain.Models.Entities;
+using Riode.Application.Modules.BrandsModule;
 
 namespace Riode_WebUI.Areas.Admin.Controllers
 {
@@ -18,7 +18,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
     public class BrandsController : Controller
     {
         readonly IMediator mediator;
-        public BrandsController(RiodeDbContext db, IMediator mediator)
+        public BrandsController(IMediator mediator)
         {
             this.mediator = mediator;
         }

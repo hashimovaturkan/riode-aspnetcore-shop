@@ -12,16 +12,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
-using Riode_WebUI.AppCode.Middlewares;
-using Riode_WebUI.AppCode.Provider;
-using Riode_WebUI.Models.DataContexts;
-using Riode_WebUI.Models.Entities.Membership;
+using Riode.Application.Core.Middlewares;
+using Riode.Application.Core.Provider;
+using Riode.Domain.Models.DataContexts;
+using Riode.Domain.Models.Entities.Membership;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Riode.Application.Core.Extensions;
 
 /*
  * 1.  Sistem konfiqurasiyalarının istifadəsi
@@ -143,7 +144,7 @@ namespace Riode_WebUI
             //senin hara girmeye selahiyyetin var
             services.AddAuthorization(cfg =>
             {
-                foreach (var item in Program.principals)
+                foreach (var item in Extension.principals)
                 {
                     cfg.AddPolicy(item, p =>
                     {
@@ -158,10 +159,11 @@ namespace Riode_WebUI
                 
             });
 
+            var asmbls = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("Riode."))
+                .ToArray();
+            services.AddMediatR(asmbls);
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(asmbls);
 
         }
 
