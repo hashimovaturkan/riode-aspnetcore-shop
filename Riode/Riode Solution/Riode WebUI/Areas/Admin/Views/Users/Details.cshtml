@@ -1,0 +1,130 @@
+﻿@model RiodeUser
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="text-center"><b>Users</b></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+
+            <tbody>
+                <tr>
+                    <th>Username</th>
+                    <td>@Model.UserName</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <th scope="row">Category</th>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <th>Email Confirmed</th>
+                    <td>
+                        @if (Model.EmailConfirmed)
+                        {
+                            <span class="badge badge-success">Confirmed</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning">Pending</span>
+                        }
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div  style="margin-bottom:30px;">
+            <div >
+                <div class="tab-control" role="tabcontrol">
+                    <div class="tab-page" id="roles" aria-title="Rollar" selected>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="max-width:100%;">
+
+                                    </th>
+                                    <th scope="col">
+                                        Name
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Tuple<long, string, bool> item in ViewBag.Roles)
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            <input type="checkbox" data-role-id="@item.Item1" data-role-name="@item.Item2"
+                                                   @(item.Item3 ? "checked" : "") />
+
+                                        </th>
+                                        <th>
+                                            @item.Item2
+                                        </th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-page" id="principals" aria-title="Selahiyyetler">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="max-width:100%;">
+
+                                    </th>
+                                    <th scope="col">
+                                        Name
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Tuple<string, bool> item in ViewBag.Principals)
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            <input type="checkbox" data-principal-name="@item.Item1"
+                                                   @(item.Item2 ? "checked" : "") />
+
+                                        </th>
+                                        <th>
+                                            @item.Item1
+                                        </th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" asp-controller="BlogPosts" class="edit"><i class="fa fa-edit" data-toggle="tooltip" title="Edit"></i></a>
+            |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+@section addcss{
+    <link href="~/libs/tab-control/tab-control.css" rel="stylesheet" />
+}
+
+@section addjs{
+<script src="~/libs/tab-control/tab-control.js"></script>
+}
+
+
+

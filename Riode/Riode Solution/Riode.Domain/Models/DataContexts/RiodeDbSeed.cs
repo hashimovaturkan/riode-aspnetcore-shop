@@ -62,6 +62,10 @@ namespace Riode.Domain.Models.DataContexts
                     {
                         userManager.AddToRoleAsync(user, role.Name).Wait();   //useri hemin rola add ele
                     }
+                    else
+                    {
+                        goto end;
+                    }
                 }
             }
 

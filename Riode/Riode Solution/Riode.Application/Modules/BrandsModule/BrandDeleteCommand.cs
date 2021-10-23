@@ -14,6 +14,16 @@ namespace Riode.Application.Modules.BrandsModule
     {
         public long? Id { get; set; }
 
+        public BrandDeleteCommand()
+        {
+
+        }
+
+        public BrandDeleteCommand(long? id)
+        {
+            id = Id;
+        }
+
         public class BrandDeleteCommandHandler : IRequestHandler<BrandDeleteCommand, CommandJsonResponse>
         {
             readonly RiodeDbContext db;

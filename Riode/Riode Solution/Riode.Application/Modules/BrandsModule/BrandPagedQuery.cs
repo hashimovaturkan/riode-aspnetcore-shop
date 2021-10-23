@@ -13,8 +13,49 @@ namespace Riode.Application.Modules.BrandsModule
 {
     public class BrandPagedQuery:IRequest<PagedViewModel<Brand>>
     {
-        public int PageIndex { get; set; } = 1;
-        public int PageSize { get; set; } = 15;
+        int pageIndex;
+        int pageSize;
+        public int PageIndex {
+            get {
+                if (pageIndex > 0)
+                {
+                    return pageIndex;
+                }
+                return 1;
+            }
+            set {
+                if (value > 0)
+                {
+                    pageIndex = value;
+                }
+                else
+                {
+                    pageIndex = 1;
+                }
+            }
+        }
+        public int PageSize
+        {
+            get
+            {
+                if (pageSize > 0)
+                {
+                    return pageSize;
+                }
+                return 15;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    pageSize = value;
+                }
+                else
+                {
+                    pageSize = 1;
+                }
+            }
+        }
 
         public class BrandPagedQueryHandler : IRequestHandler<BrandPagedQuery, PagedViewModel<Brand>>
         {

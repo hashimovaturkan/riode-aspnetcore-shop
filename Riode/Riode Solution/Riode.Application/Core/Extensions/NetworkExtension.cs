@@ -33,6 +33,7 @@ namespace Riode.Application.Core.Extensions
                         message.CC.Add(cc);
 
                     SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
+                    //smtpClient.UseDefaultCredentials = false;
                     smtpClient.Credentials = new NetworkCredential(fromMail, password);
                     smtpClient.EnableSsl = true;
                     smtpClient.Send(message);

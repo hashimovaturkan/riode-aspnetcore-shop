@@ -42,7 +42,7 @@ namespace Riode_WebUI.Controllers
             return View();
         }
 
-        [Authorize(Policy = "home.contact")]
+        //[Authorize(Policy = "home.contact")]
         public IActionResult Contact()
         {
             return View();
@@ -50,7 +50,7 @@ namespace Riode_WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "home.contact")]
+        //[Authorize(Policy = "home.contact")]
         public IActionResult Contact(ContactPost model)
         {
             if (ModelState.IsValid)

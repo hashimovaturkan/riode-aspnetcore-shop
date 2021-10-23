@@ -42,6 +42,7 @@ namespace Riode_WebUI.Controllers
         }
 
         //[Authorize(Policy = "account.signin")]
+        [Route("/signin.html")]
         public IActionResult SignIn()
         {
             return View();
@@ -49,6 +50,7 @@ namespace Riode_WebUI.Controllers
 
         
         [HttpPost]
+        [Route("/signin.html")]
         //[Authorize(Policy = "account.signin")]
         public async Task<IActionResult> SignIn(LoginFormModel user)
         {
@@ -103,6 +105,7 @@ namespace Riode_WebUI.Controllers
         }
         //[Authorize(Policy = "account.register")]
         [HttpPost]
+        [Route("/signin.html")]
         public async Task<IActionResult> Register(RegisterFormModel user)
         {
             if (ModelState.IsValid)
@@ -205,7 +208,7 @@ namespace Riode_WebUI.Controllers
         }
 
         [Route("email-confirm")]
-        [Authorize(Policy = "account.emailconfirm")]
+        //[Authorize(Policy = "account.emailconfirm")]
         public async Task<IActionResult> EmailConfirm(string email, string token)
         {
             var user = userManager.FindByEmailAsync(email).Result;
@@ -214,6 +217,8 @@ namespace Riode_WebUI.Controllers
                 ViewBag.Message = "Token error!";
                 return View();
             }
+
+            token = token.Replace(" ", "+");
 
             if (user.EmailConfirmed == true)
             {
@@ -280,5 +285,27 @@ namespace Riode_WebUI.Controllers
         {
             return View();
         }
+
+        [Authorize(Policy = "account.profile")]
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        [Authorize(Policy = "account.logout")]
+        [Route("/logout.html")]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
+        }
+
+        [Route("/accessdenied.html")]
+        public IActionResult AccessDeny()
+        {
+            return View();
+        }
+
+
     }
 }

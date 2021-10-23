@@ -126,6 +126,19 @@
                     </div>
                 </a>
             </li>
+            @if (User.HasAccess("admin.users.index"))
+            {
+                <li class="">
+                    <a asp-controller="users" asp-action="index" aria-expanded="false">
+                        <div class="nav_icon_small">
+                            <img src="~/uploads/images/menu-icon/Mail_Box.svg" alt="">
+                        </div>
+                        <div class="nav_title">
+                            <span>Users</span>
+                        </div>
+                    </a>
+                </li>
+            }
             <li class="">
                 <a asp-controller="products" asp-action="index" aria-expanded="false">
                     <div class="nav_icon_small">

@@ -29,14 +29,16 @@ namespace Riode_WebUI.Areas.Admin.Controllers
             this.db = db;
         }
 
-        [Authorize(Policy = "admin.account.login")]
+        //[Authorize(Policy = "admin.account.login")]
+        [Route("/admin/signin.html")]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Policy = "admin.account.login")]
+        //[Authorize(Policy = "admin.account.login")]
+        [Route("admin/signin.html")]
         public async Task<IActionResult> Login(LoginFormModel user)
         {
             if (ModelState.IsValid)
@@ -99,6 +101,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         [Authorize(Policy = "admin.account.logout")]
+        [Route("/admin/logout.html")]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();

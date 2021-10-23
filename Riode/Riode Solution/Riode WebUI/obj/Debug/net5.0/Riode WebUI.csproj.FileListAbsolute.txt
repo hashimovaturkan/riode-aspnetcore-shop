@@ -229,3 +229,6 @@ E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debu
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\Riode.Resources.pdb
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\bin\Debug\net5.0\en\Riode.Resources.resources.dll
 E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Riode WebUI.MvcApplicationPartsAssemblyInfo.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Views\Account\AccessDeny.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
+E:\Lesson folder\riode-aspnetcore-shop\Riode\Riode Solution\Riode WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Details.cshtml.g.cs

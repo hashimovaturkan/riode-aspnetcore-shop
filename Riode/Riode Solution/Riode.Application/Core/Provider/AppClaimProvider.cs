@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Riode.Domain.Models.DataContexts;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,12 @@ namespace Riode.Application.Core.Provider
         public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
         {
             if (principal.Identity.IsAuthenticated //eger login olunubsa
-                && principal.Identity is ClaimsIdentity cIdentity) //cast prosesi
+                && principal.Identity is ClaimsIdentity cIdentity)
+            //cast prosesi
+            
             {
                 //claimleri silmek
-                while (cIdentity.Claims.Any(c=>!c.Type.StartsWith("http") && !c.Type.StartsWith("Asp"))) //icindeki butun claimler bosalana qeder
+                while (cIdentity.Claims.Any(c => !c.Type.StartsWith("http") && !c.Type.StartsWith("Asp"))) //icindeki butun claimler bosalana qeder
                 {
                     var claims = cIdentity.Claims.First(c => !c.Type.StartsWith("http") && !c.Type.StartsWith("Asp"));
                     cIdentity.RemoveClaim(claims);  //her defe birincini goturub silir
@@ -41,10 +44,10 @@ namespace Riode.Application.Core.Provider
                 claimNames.AddRange(lst);
 
                 //rolun verdiyi yeni claimleri goturmek
-                string[] rClaims=   (from ur in db.UserRoles
-                                     join rc in db.RoleClaims on ur.RoleId equals rc.RoleId
-                                     where ur.UserId == userId && rc.ClaimValue.Equals("1")
-                                     select rc.ClaimType).ToArray();
+                string[] rClaims = (from ur in db.UserRoles
+                                    join rc in db.RoleClaims on ur.RoleId equals rc.RoleId
+                                    where ur.UserId == userId && rc.ClaimValue.Equals("1")
+                                    select rc.ClaimType).ToArray();
                 claimNames.AddRange(rClaims);
 
 

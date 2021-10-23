@@ -22,14 +22,14 @@ namespace Riode.Domain.Models.DataContexts
 
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog=Riode; User Id=sa; Password=query;");
-        //    }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog=Riode; User Id=sa; Password=query;");
+            }
 
-        //}
+        }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
