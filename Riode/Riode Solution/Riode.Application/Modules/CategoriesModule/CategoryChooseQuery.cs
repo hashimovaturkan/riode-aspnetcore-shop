@@ -22,7 +22,9 @@ namespace Riode.Application.Modules.CategoriesModule
 
             public async Task<List<Category>> Handle(CategoryChooseQuery request, CancellationToken cancellationToken)
             {
-                var categories = await db.Categories.Where(c=>c.DeletedByUserId == null).ToListAsync();
+                var categories = await db.Categories.Include(c=> c.Children)
+                                    .ThenInclude(c => c.Children)
+                                    .Where(c=>c.DeletedByUserId == null && c.ParentId == null).ToListAsync();
                 return categories;
             }
         }

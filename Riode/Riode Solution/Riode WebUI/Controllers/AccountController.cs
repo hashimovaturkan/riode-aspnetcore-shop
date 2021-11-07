@@ -42,7 +42,7 @@ namespace Riode_WebUI.Controllers
         }
 
         //[Authorize(Policy = "account.signin")]
-        [Route("/signin.html")]
+        [Route("signin.html")]
         public IActionResult SignIn()
         {
             return View();
@@ -50,7 +50,7 @@ namespace Riode_WebUI.Controllers
 
         
         [HttpPost]
-        [Route("/signin.html")]
+        [Route("signin.html")]
         //[Authorize(Policy = "account.signin")]
         public async Task<IActionResult> SignIn(LoginFormModel user)
         {
@@ -105,7 +105,7 @@ namespace Riode_WebUI.Controllers
         }
         //[Authorize(Policy = "account.register")]
         [HttpPost]
-        [Route("/signin.html")]
+        [Route("register.html")]
         public async Task<IActionResult> Register(RegisterFormModel user)
         {
             if (ModelState.IsValid)
@@ -293,14 +293,14 @@ namespace Riode_WebUI.Controllers
         }
 
         [Authorize(Policy = "account.logout")]
-        [Route("/logout.html")]
+        [Route("logout.html")]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index","Home");
         }
 
-        [Route("/accessdenied.html")]
+        [Route("accessdenied.html")]
         public IActionResult AccessDeny()
         {
             return View();

@@ -24,7 +24,7 @@ namespace Riode.Application.Modules.BlogPostsModule
             }
             public async Task<PagedViewModel<BlogPost>> Handle(BlogPostPagedQuery request, CancellationToken cancellationToken)
             {
-                var query = db.BlogPosts.Where(s => s.DeletedByUserId == null).AsQueryable();
+                var query = db.BlogPosts.Where(s => s.DeletedByUserId == null && s.PublishedDate != null).AsQueryable();
                 
 
                 return new PagedViewModel<BlogPost>(query, request.PageIndex, request.PageSize);

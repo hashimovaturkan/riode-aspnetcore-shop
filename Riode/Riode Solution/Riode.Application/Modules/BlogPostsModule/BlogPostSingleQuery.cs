@@ -28,9 +28,9 @@ namespace Riode.Application.Modules.BlogPostsModule
                 {
                     return null;
                 }
-
                 var blog = await db.BlogPosts
                     .Include(b => b.Category)
+                    .Include(b=> b.Comments)
                     .FirstOrDefaultAsync(m => m.Id == request.Id && m.DeletedByUserId == null, cancellationToken);
 
                 return blog;

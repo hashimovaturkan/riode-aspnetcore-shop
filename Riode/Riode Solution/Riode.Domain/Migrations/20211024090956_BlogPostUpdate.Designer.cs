@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Riode.Domain.Models.DataContexts;
 
 namespace Riode.Domain.Migrations
 {
     [DbContext(typeof(RiodeDbContext))]
-    partial class RiodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211024090956_BlogPostUpdate")]
+    partial class BlogPostUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,43 +114,6 @@ namespace Riode.Domain.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("BlogPosts");
-                });
-
-            modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPostComment", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("BlogPostId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CreatedByUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("DeletedByUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("ParentId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("BlogPostComments");
                 });
 
             modelBuilder.Entity("Riode.Domain.Models.Entities.Brand", b =>
@@ -817,23 +782,6 @@ namespace Riode.Domain.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPostComment", b =>
-                {
-                    b.HasOne("Riode.Domain.Models.Entities.BlogPost", "BlogPost")
-                        .WithMany("Comments")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Riode.Domain.Models.Entities.BlogPostComment", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId");
-
-                    b.Navigation("BlogPost");
-
-                    b.Navigation("Parent");
-                });
-
             modelBuilder.Entity("Riode.Domain.Models.Entities.Category", b =>
                 {
                     b.HasOne("Riode.Domain.Models.Entities.Category", "Parent")
@@ -987,16 +935,6 @@ namespace Riode.Domain.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Specification");
-                });
-
-            modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPost", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPostComment", b =>
-                {
-                    b.Navigation("Children");
                 });
 
             modelBuilder.Entity("Riode.Domain.Models.Entities.Brand", b =>

@@ -46,8 +46,8 @@
 
             </tbody>
         </table>
-        <div  style="margin-bottom:30px;">
-            <div >
+        <div style="margin-bottom:30px;">
+            <div>
                 <div class="tab-control" role="tabcontrol">
                     <div class="tab-page" id="roles" aria-title="Rollar" selected>
                         <table class="table">
@@ -66,7 +66,8 @@
                                 {
                                     <tr>
                                         <th scope="row">
-                                            <input type="checkbox" data-role-id="@item.Item1" data-role-name="@item.Item2"
+                                            <input type="checkbox" data-role-id="@item.Item1" 
+                                                   data-user-id="@Model.Id"
                                                    @(item.Item3 ? "checked" : "") />
 
                                         </th>
@@ -82,7 +83,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col" style="max-width:100%;">
+                                    <th scope="col" style="max-width:100%;" class="table-row-select">
 
                                     </th>
                                     <th scope="col">
@@ -94,14 +95,15 @@
                                 @foreach (Tuple<string, bool> item in ViewBag.Principals)
                                 {
                                     <tr>
-                                        <th scope="row">
+                                        <td scope="row" class="table-row-select">
                                             <input type="checkbox" data-principal-name="@item.Item1"
+                                                   data-user-id="@Model.Id"
                                                    @(item.Item2 ? "checked" : "") />
 
-                                        </th>
-                                        <th>
+                                        </td>
+                                        <td>
                                             @item.Item1
-                                        </th>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -120,10 +122,85 @@
 
 @section addcss{
     <link href="~/libs/tab-control/tab-control.css" rel="stylesheet" />
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
 }
 
 @section addjs{
-<script src="~/libs/tab-control/tab-control.js"></script>
+    <script src="~/libs/tab-control/tab-control.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+    $(document).ready(function () {
+        $('input[type="checkbox"][data-role-id]').change(function (e) {
+            let obj = $(e.currentTarget).data();
+            obj.selected = $(e.currentTarget).is(":checked");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("SetRole")',
+                data: obj,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (response) {
+                    if (response.error == false) {
+                        toastr.success(response.message, "Ugurludur!");
+                    }
+                    else {
+                        toastr.warning(response.message, "Xeta!");
+                        $(e.currentTarget).prop("checked", !obj.selected);
+                    }
+                },
+                error: function (response) {
+
+                }
+
+            });
+        })
+
+        $('input[type="checkbox"][data-principal-name]').change(function (e) {
+            let obj = $(e.currentTarget).data();
+            obj.selected = $(e.currentTarget).is(":checked");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("SetPrincipal")',
+                data: obj,
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (response) {
+                    if (response.error == false) {
+                        toastr.success(response.message, "Ugurludur!");
+                    }
+                    else {
+                        toastr.warning(response.message, "Xeta!");
+                        $(e.currentTarget).prop("checked", !obj.selected);
+                    }
+                },
+                error: function (response) {
+
+                }
+
+            });
+        })
+    })
+    </script>
 }
 
 

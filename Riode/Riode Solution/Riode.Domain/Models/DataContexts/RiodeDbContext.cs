@@ -46,6 +46,7 @@ namespace Riode.Domain.Models.DataContexts
         public DbSet<SpecificationValue> SpecificationValues { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<BlogPostComment> BlogPostComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

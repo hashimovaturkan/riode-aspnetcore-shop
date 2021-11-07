@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Riode.Domain.Models.DataContexts;
 
 namespace Riode.Domain.Migrations
 {
     [DbContext(typeof(RiodeDbContext))]
-    partial class RiodeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211024133907_Comment")]
+    partial class Comment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -820,7 +822,7 @@ namespace Riode.Domain.Migrations
             modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPostComment", b =>
                 {
                     b.HasOne("Riode.Domain.Models.Entities.BlogPost", "BlogPost")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("BlogPostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -987,11 +989,6 @@ namespace Riode.Domain.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("Specification");
-                });
-
-            modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPost", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Riode.Domain.Models.Entities.BlogPostComment", b =>

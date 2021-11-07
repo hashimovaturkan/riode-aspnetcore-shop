@@ -1,0 +1,28 @@
+﻿@model BlogPostComment
+
+<li class='comment @(Model.ParentId != null?"comment-sub ml-10":"")'  id="#c-@Model.Id" data-comment-id="@Model.Id">
+    <figure class="comment-media">
+        <a href="#">
+            <img src="~/uploads/images/blog/comments/1.jpg" alt="avatar">
+        </a>
+    </figure>
+    <div class="comment-body">
+        <div class="comment-user">
+            <span class="comment-date">@Model.CreatedDate.ToShortDateString()</span>
+            <h4><a href="#">@Model.CreatedByUser</a></h4>
+        </div>
+
+        <div class="comment-content mb-2">
+            @if (Model.ParentId != null)
+            {
+                <a href="#c-@Model.ParentId">@@@($"{Model.Parent.CreatedByUser?.UserName}")</a><span>&nbsp; &nbsp;</span>
+            }
+            <p>
+                @Model.Comment
+            </p>
+        </div>
+        <a href="#" class="btn btn-link btn-reveal-right btn-comment-reply">
+            REPLY<i class="d-icon-arrow-right"></i>
+        </a>
+    </div>
+</li>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Riode.Domain.Models.Entities;
 using Riode.Domain.Models.Entities.Membership;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Riode.Domain.Models.DataContexts
 
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<RiodeUser>>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<RiodeRole>>();
+                
 
                 bool hasRole = roleManager.RoleExistsAsync(role.Name).Result;   //role axtarilsin
                 if (hasRole == true) //eger role varsa
@@ -71,6 +73,46 @@ namespace Riode.Domain.Models.DataContexts
 
             end:
             return builder;
+        }
+
+        public static IApplicationBuilder Seed(this IApplicationBuilder builder)
+        {
+            using (var scope = builder.ApplicationServices.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<RiodeDbContext>();
+                db.Database.Migrate();
+
+                //eger ilk yarananda isteyirikse bos qalmasin biseyler mesleen bloglar bele edirik
+                //InitBlogPosts(db);
+            }
+            return builder;
+        }
+
+        private static void InitBlogPosts(RiodeDbContext db)
+        {
+            if (!db.BlogPosts.Any())
+            {
+                db.BlogPosts.Add(new BlogPost
+                {
+                    Title = "Blog1",
+                    Content = "Content1",
+                    ImageUrl = "",
+                    CategoryId = 0,
+                    PublishedDate = DateTime.Now
+
+                });
+
+                db.BlogPosts.Add(new BlogPost
+                {
+                    Title = "Blog2",
+                    Content = "Content2",
+                    ImageUrl = "",
+                    CategoryId = 0,
+                    PublishedDate = DateTime.Now
+
+                });
+                db.SaveChanges();
+            }
         }
     }
 }

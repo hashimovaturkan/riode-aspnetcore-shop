@@ -553,7 +553,7 @@
     <!-- tag input -->
     <script src="~/admin/vendors/tagsinput/tagsinput.js"></script>
 
-    <script src="~/libs/toastr.js/toastr.min.js"></script>
+
     <script src="~/libs/jquery-validate/jquery.validate.js"></script>
     <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
@@ -580,6 +580,7 @@
     <script src="~/admin/js/admin-table.js"></script>
     @RenderSection("addjs", required: false)
     <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
     <script>
         function removeEntity(id) {
 
@@ -615,7 +616,32 @@
                 })
             }
         });
-    }
+        }
+
+        $.ajaxSetup({
+            statusCode: {
+                200: function (response) {
+                    if (response.error == false && response.message.length>0) {
+                        toastr.success(response.message, "Ugurludur!");
+                    }
+                },
+                400: function (response) {
+                    toastr.warning("Xetali sorgu!", "Diqqet!");
+                },
+                401: function (response) {
+                    toastr.warning("Evvelce sisteme daxil olmalisiniz!", "Diqqet!");
+                },
+                403: function (response) {
+                    toastr.warning("BU emeliyyat ucun sizin selahiyyetiniz yoxdur!", "Diqqet!");
+                },
+                404: function (response) {
+                    toastr.warning("Melumat tapilmadi!", "Diqqet!");
+                },
+                500: function (response) {
+                    toastr.error("Server Xetasi", "Error!");
+                },
+            }
+        });
     </script>
     <script src="~/admin/js/custom.js"></script>
 </body>

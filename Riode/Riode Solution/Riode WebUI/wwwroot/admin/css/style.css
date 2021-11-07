@@ -15569,3 +15569,11 @@ table.table .avatar {
     display:inline-block;
     padding: 2px;
 }
+
+th.table-row-select,
+td.table-row-select{
+    width:50px;
+    min-width:50px;
+    max-width:50px;
+    text-align:center;
+}

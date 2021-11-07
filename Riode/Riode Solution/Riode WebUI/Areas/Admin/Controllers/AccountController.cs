@@ -30,7 +30,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         //[Authorize(Policy = "admin.account.login")]
-        [Route("/admin/signin.html")]
+        [Route("admin/signin.html")]
         public IActionResult Login()
         {
             return View();
@@ -101,7 +101,7 @@ namespace Riode_WebUI.Areas.Admin.Controllers
         }
 
         [Authorize(Policy = "admin.account.logout")]
-        [Route("/admin/logout.html")]
+        [Route("admin/logout.html")]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();

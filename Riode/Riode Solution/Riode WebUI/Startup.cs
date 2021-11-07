@@ -173,6 +173,8 @@ namespace Riode_WebUI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.Seed();
             }
 
             
@@ -233,28 +235,29 @@ namespace Riode_WebUI
                      }
                  });
 
-                //endpoints.MapControllerRoute("admin_signIn", "admin/signin.html",
-                //    defaults: new
-                //    {
-                //        controller = "Account",
-                //        action = "Login",
-                //        area = "Admin"
-                //    });
+                endpoints.MapControllerRoute("admin_signIn", "admin/signin.html",
+                    defaults: new
+                    {
+                        controller = "Account",
+                        action = "Login",
+                        area = "Admin"
+                    });
 
-                //endpoints.MapControllerRoute("default_signIn", "signin.html",
-                //    defaults:new {
-                //        controller="Account",
-                //        action="SignIn",
-                //        area=""
-                //    });
+                endpoints.MapControllerRoute("default_signIn", "signin.html",
+                    defaults: new
+                    {
+                        controller = "Account",
+                        action = "SignIn",
+                        area = ""
+                    });
 
-                //endpoints.MapControllerRoute("admin_signOut", "admin/logout.html",
-                //    defaults: new
-                //    {
-                //        controller = "Account",
-                //        action = "Logout",
-                //        area = "Admin"
-                //    });
+                endpoints.MapControllerRoute("admin_signOut", "admin/logout.html",
+                    defaults: new
+                    {
+                        controller = "Account",
+                        action = "Logout",
+                        area = "Admin"
+                    });
 
                 endpoints.MapControllerRoute(
                       name: "areas-with-lang",
